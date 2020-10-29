@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>次期発注管理システム（仮称）</title>
+<meta name="description" content="稟議・申請ワークフロー">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../css/common/main.css">
+<link rel="stylesheet" href="../css/include/jquery-ui-1.12.1.css">
+
+</head>
+<body>
+<div class="wrapper">
+<!----- ヘッダー START----->
+<header class="lnk_menu" ><img src="../image/logo_s.png" class="img_logo">次期発注管理システム（仮称）</header>
+<!----- ヘッダー END ----->
+
+<!----- メインコンテンツ START ----->
+<article id="main_win_area">
+  <h1 class="hks_title" >発注明細別受入一覧</h1>
+  <!----- 条件欄 START ----->
+  <section>
+    <table id="tb_order_cond_list1" class="tbl_2lane tbl_small" >
+      <tr>
+        <td>発注タイプ</td>
+        <td></td>
+        <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注タイプ＞</p></div></td>
+        <td>
+          <select class="cb_placeholder col_width10" style="height: 28px;">
+            <option value="" class="op_hide">選択してください</option>
+            <option value="-" class="op_normal"></option>
+            <option value="01" class="op_normal">開発委託・宣伝</option>
+            <option value="02" class="op_normal">一般購買</option>
+            <option value="03" class="op_normal">月額固定費</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>発注番号</td>
+        <td></td>
+        <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注番号＞</p></div></td>
+        <td><input type="text" class="col_width07" placeholder="例)9999999999" value="" maxlength="10"></td>
+      </tr>
+      <tr>
+        <td>発注担当者</td>
+        <td></td>
+        <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注担当者＞</p></div></td>
+        <td><input type="text" class="txt_userlist col_width20" placeholder="名前の一部を入力すると候補を表示します" value=""></td>
+      </tr>
+      <tr>
+        <td>仕入先</td>
+        <td><p id="supplierSch01" class="btn_opn_win" style="font-size: 0.875em;">仕入先検索</p></td>
+        <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜仕入先＞</p></div></td>
+        <td><input type="text" id="supplier_name" class="col_width20" value=""></td>
+      </tr>
+      <tr>
+        <td>フリーワード</td>
+        <td></td>
+        <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜フリーワード＞</p></div></td>
+        <td><textarea class="txt_auto_size col_width22" cols="22" rows="1"></textarea></td>
+      </tr>
+      <tr>
+        <td>発注明細受入状況</td>
+        <td></td>
+        <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注明細受入状況<＞</p></div></td>
+        <td>
+          <select class="cb_placeholder col_width10" style="height: 28px;">
+            <option value="" class="op_hide">選択してください</option>
+            <option value="-" class="op_normal"></option>
+            <option value="01" class="op_normal">未受入</option>
+            <option value="02" class="op_normal">受入済</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4" class="rec_coalescing"  >
+          <label id="btn_accordion01" class="btn_plus">詳細条件</label>
+        </td>
+      </tr>
+    </table>
+    <div id="win_accordion01">
+      <table id="tb_order_cond_list2" class="tbl_2lane tbl_small" >
+        <tr>
+          <td>注文日</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜注文日＞</p></div></td>
+          <td>
+              <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+              ～
+              <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+          </td>
+        </tr>
+        <tr>
+          <td>発注担当部署</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注担当部署＞</p></div></td>
+          <td><input type="text" class="txt_userlist col_width20" placeholder="名前の一部を入力すると候補を表示します" value=""></td>
+        </tr>
+        <tr>
+          <td>発注決裁日</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注決裁日＞</p></div></td>
+          <td>
+              <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+              ～
+              <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+          </td>
+        </tr>
+        <tr>
+          <td>発注決裁者</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注決裁者＞</p></div></td>
+          <td><input type="text" class="txt_userlist col_width20" placeholder="名前の一部を入力すると候補を表示します"></td>
+        </tr>
+        <tr>
+          <td>検収予定日</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜検収予定日＞</p></div></td>
+          <td>
+              <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+              ～
+              <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+          </td>
+        </tr>
+        <tr>
+          <td>検査完了日</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜検査完了日＞</p></div></td>
+          <td>
+              <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+              ～
+              <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+          </td>
+        </tr>
+        <tr>
+          <td>転記日</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜転記日＞</p></div></td>
+          <td>
+              <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+              ～
+              <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+          </td>
+        </tr>
+        <tr>
+          <td>支払日</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜支払日＞</p></div></td>
+          <td>
+              <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+              ～
+              <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+          </td>
+        </tr>
+        <tr>
+          <td>受入承認日</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜受入承認日＞</p></div></td>
+          <td>
+              <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+              ～
+              <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+          </td>
+        </tr>
+        <tr>
+          <td>計上承認日</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜計上承認日＞</p></div></td>
+          <td>
+              <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+              ～
+              <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+          </td>
+        </tr>
+        <tr>
+          <td>資本金</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜資本金＞</p></div></td>
+          <td><input type="text" id="approval_name" class="col_width11" value="" placeholder="例）1,000,000" maxlength="14">～
+              <input type="text" id="approval_name" class="col_width11" value="" placeholder="例）1,000,000" maxlength="14"></td>
+        </tr>
+        <tr>
+          <td>基本契約</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜基本契約＞</p></div></td>
+          <td>
+            <select class="cb_placeholder col_width10" style="height: 28px;">
+              <option value="" class="op_hide">選択してください</option>
+              <option value="-" class="op_normal"></option>
+              <option value="01" class="op_normal">基本契約あり</option>
+              <option value="02" class="op_normal">基本契約なし</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>予算稟議番号</td>
+          <td><p id="approvalSch01" class="btn_opn_win" style="font-size: 0.875em;">稟議検索</p></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜予算稟議番号＞</p></div></td>
+          <td><input type="text" id="approval_name" class="col_width11" value="" placeholder="例）BNE-RG99999999" maxlength="14"></td>
+        </tr>
+        <tr>
+          <td>WBS</td>
+          <td><p id="wbssearch" class="btn_opn_win" style="font-size: 0.875em;">WBS検索</p></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜WBS＞</p></div></td>
+          <td><input type="text" id="wbs_code" class="col_width11" value="" placeholder="コードの一部を入力すると候補を表示します" maxlength="14">&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="text" id="wbs_name" class="col_width11" value="" placeholder="名前の一部を入力すると候補を表示します" maxlength="14"></td>
+        </tr>
+        <tr>
+          <td>最終フラグ</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜最終フラグ＞</p></div></td>
+          <td>
+            <select class="cb_placeholder col_width10" style="height: 28px;">
+              <option value="" class="op_hide">選択してください</option>
+              <option value="-" class="op_normal"></option>
+              <option value="01" class="op_normal">最終版</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>経理フラグ</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜経理フラグ＞</p></div></td>
+          <td>
+            <select class="cb_placeholder col_width10" style="height: 28px;">
+              <option value="" class="op_hide">選択してください</option>
+              <option value="-" class="op_normal"></option>
+              <option value="01" class="op_normal">経理チェック済</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>摘要</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜摘要＞</p></div></td>
+          <td>
+            <select class="cb_placeholder col_width10" style="height: 28px;">
+              <option value="" class="op_hide">選択してください</option>
+              <option value="-" class="op_normal"></option>
+              <option value="01" class="op_normal">開発費</option>
+              <option value="02" class="op_normal">XXX</option>
+              <option value="03" class="op_normal">YYY</option>
+              <option value="04" class="op_normal">ZZZ</option>
+            </select>
+          </td>
+        </tr>
+     </table>
+    </div>
+    <div class="area_center search_btn_area">
+      <input type="button" id="btn_list_sch" class="push_btn btn_m" value="検索" >
+      <input type="button" id="btn_p_clear"  class="push_btn btn_m" value="クリア" >
+    </div>
+  </section>
+  <!----- 条件欄 END ----->
+  
+  <!----- 一覧 START ----->
+  <section>
+    <div class="order_list_tool_area">
+      <div>
+        <label>表示件数</label>
+        <select>
+          <option value="15">15件</option>
+          <option value="50">50件 </option>
+          <option value="100">100件</option>
+        </select>
+      </div>
+      <div>
+        <input type="button" class="push_btn btn_m btn_m_l" value="リマインドメール送信" >
+        <input type="button" class="push_btn btn_m" value="経理情報更新" >
+        <input type="button" class="push_btn btn_m" value="CSV出力" >
+    </div>
+    </div>
+    <div class="ld_framearea" >
+      <table id="tb_order_list">
+        <thead>
+          <tr>
+            <th>発注番号</th>
+            <th>明細番号</th>
+            <th>件名</th>
+            <th>発注明細内容</th>
+            <th>WBS</th>
+            <th>受入状況</th>
+            <th>受入</th>
+            <th>検収予定日</th>
+            <th>検査完了日</th>
+            <th>発注数量</th>
+            <th>受入数量</th>
+            <th>発注合計金額</th>
+            <th>受入合計金額</th>
+            <th>発注担当者</th>
+            <th>発注担当部署</th>
+            <th>仕入先</th>
+            <th>資本金</th>
+            <th>支払予定日</th>
+            <th>納品日</th>
+            <th>転記日</th>
+            <th>支払日</th>
+            <th>通貨</th>
+            <th>通貨レート</th>
+            <th>入力部門</th>
+            <th>子分類</th>
+            <th>最終フラグ</th>
+            <th>経理フラグ</th>
+            <th>契約締結日</th>
+            <th>メール<input type="checkbox"></th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td id="tb_order_list_pager" colspan="29" >
+              <div class="pager_centerbox">
+              </div>
+              <div class="pager_info">
+              </div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+      <!-- ローディングアイコン -->
+      <div id="ldicon_order_list" class="ld_freamestyle ld_ldframes">
+        <div class="ld_ldicon"></div>
+      </div>
+    </div>
+    
+  </section>
+  <!----- 一覧 END ----->
+</article>
+<!----- メインコンテンツ END ----->
+
+<!----- ダイアログエリア START ----->
+<div id="dialog_window_div"></div>
+<!----- ダイアログエリア END ----->
+<!----- 吹き出しSTART ----->
+<div id="balloon_message">
+  <p></p>
+</div>
+<!----- 吹き出しEND ----->
+<div id="shadeDiv" style="position: absolute;width: 100%;height: 200%;background-color: grey;filter: alpha(opacity=50);opacity:0.7;z-index: 1001;display: none;left: 0px;top: 29px;"></div>
+<div id="loadingIcon" style="position: absolute;left: 50%;top: 18%;width: 300px;height: 80px;margin-left: -150px;background-color: #555555;border-radius: 5px;border: 2px solid #FFF;z-index: 1002;visibility: hidden;">
+  <div id="loadingBox" style="position: absolute;left: 6px;top: 6px;transform: rotate(0deg); transform-origin: 35px 35px;transition: transform 2s;"><img id="loadingImage" src="../image/loadingIcon.png" width=70px></div>
+  <div style="position: absolute;left: 80px;top: 13px;"><p style="color:#FFF;">しばらくお待ちください</p></div>
+</div>
+<!----- フッター ----->
+<article style="position: fixed;bottom: 0;width: 100%;">
+  <!-- 先頭へスクロール -->
+　<section>
+  <div id="toTopImg" class="area_foottool" >
+    <p class="btn_goto_top">↑</p>
+  </div>
+　</section>
+  <!-- Copyright表記 -->
+  <section>
+    <footer>Copyright xxxxxxxxxxxxxxxxxxxxxxxxxxx</footer>
+  </section>
+</article>
+<!----- フッター END ----->
+
+</div>
+<script src="../js/include/jquery-1.12.4.js" ></script>
+<script src="https://code.jquery.com/jquery-1.7.2.min.js" integrity="sha256-R7aNzoy2gFrVs+pNJ6+SokH04ppcEqJ0yFLkNGoFALQ=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.8.21/jquery-ui.min.js" integrity="sha256-DKEv4IPW6aw0MrDgVoDVyPv6DQgU+GG8+Q3uW5utOFM=" crossorigin="anonymous"></script>
+<script src="../js/include/jquery.ui.datepicker-ja.js"></script>
+<script src="../data/UserNameData.js"></script>
+<script src="../js/common/common.js"></script>
+<!-- <script src="../js/include/jquery-1.12.4.js"></script>
+<script src="../js/include/jquery-3.5.1.min.js"></script>
+<script src="../js/include/jquery-ui-1.12.1.js"></script>
+<script src="../js/include/jquery-ui-1.12.1.min.js"></script>
+<script src="../js/include/jquery.ui.datepicker-ja.js"></script>
+<script src="../js/common/common.js"></script>
+<script src="../data/UserNameData.js"></script> -->
+<script src="../data/MyOrderListData.js"></script>
+<script src="../js/page/OrderDetailAcceptanceList.js"></script>
+</script>
+</body>
+</html>

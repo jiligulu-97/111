@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>稟議内容入力</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="稟議内容入力">
+	<link rel="stylesheet"  href="../css/include/jquery-ui-1.12.1.css">
+    <link rel="stylesheet"  href="../css/common/main.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		
+		<!----- ヘッダー START----->
+		<header class="lnk_menu"><img src="../image/logo_s.png" class="img_logo">次期発注管理システム（仮称）</header>
+		<!----- ヘッダー END ----->
+		
+		<!----- パンくず ----->
+		<div id="features">
+			<div class="feature-row">
+				<div class="feature-col">
+					<img src="../image/image001.png" width=80px>
+					<h4>ガバナンス確認</h4>
+				</div>
+				<div class="feature-col">
+					<img src="../image/image016.png" width=20px>
+				</div>
+				<div class="feature-col">
+					<img src="../image/image002.png" width=80px>
+					<h4>基本内容入力</h4>
+				</div>
+				<div class="feature-col">
+					<img src="../image/image016.png" width=20px>
+				</div>
+				<div class="feature-col">
+					<img src="../image/image003.png" width=80px>
+					<h4>明細内容入力</h4>
+				</div>
+				<div class="feature-col">
+					<img src="../image/image016.png" width=20px>
+				</div>
+				<div class="feature-col">
+					<img src="../image/selected004.png" width=80px>
+					<h4>稟議内容入力</h4>
+				</div>
+				<div class="feature-col">
+					<img src="../image/image016.png" width=20px>
+				</div>
+				<div class="feature-col">
+					<img src="../image/image005.png" width=80px>
+					<h4>承認ルート入力</h4>
+				</div>
+				<div class="feature-col">
+					<img src="../image/image016.png" width=20px>
+				</div>
+				<div class="feature-col">
+					<img src="../image/image006.png">
+					<h4>内容確認</h4>
+				</div>
+				<div class="feature-col">
+					<img src="../image/image016.png" width=20px>
+				</div>
+				<div class="feature-col">
+					<img src="../image/image007.png">
+					<h4>登録完了</h4>
+				</div>
+			</div>
+		</div>
+		<!----- パンくず END ----->
+
+		<!----- メインコンテンツ ----->
+		<article id="main_win_area" style="height: auto;">
+			<h1 class="hks_title">稟議内容入力</h1>
+			<div style="margin:10px auto 10px;width:50%;">
+				<button id="motoroBtn" class="push_btn btn_m" onClick="javascript:history.back(-1);">戻る</button>&nbsp;
+				<button id="saveAllChanges" class="push_btn btn_m" disabled>一時保存</button>&nbsp;
+				<button class="push_btn btn_m" onClick="gotoPage('OrderApprovalRouteInput.html')">次へ</button>&nbsp;
+				<button id="hatchuNaiyouKakuninnHeBtn" class="push_btn btn_m" style="width:150px;"
+					onClick="gotoPage('OrderContentConfirm.html')">発注内容確認へ</button>
+			</div>
+			<section>
+				<table class="tbl_table">
+					<tr>
+						<td class="leftTD1">稟議要否</td>
+						<td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+        				<td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜稟議要否＞</p></div></td>
+       					<td class="rightTD" colspan="4">
+							<input id="radioPaperNone" name="印纸" type="radio" value="印纸なし">&nbsp;稟議を兼ねる発注登録
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<input id="radioPaperSelected" class="radioPaperHave" name="印纸" type="radio"
+								value="印纸あり" />&nbsp;個別稟議決裁済の発注
+						</td>
+					</tr>
+					<tr id="IndividualApprovalNumberSearch" style="display:none;">
+						<td class="leftTD1" colspan="2">
+							個別稟議番号<br>
+							<input type="button" class="push_btn btn_inner" value="稟議検索">
+						</td>
+						<td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜個別稟議番号＞</p></div></td>
+						<td class="rightTD" colspan="4">
+							<select class="cb_placeholder col_width12" style="height: 28px;">
+								<option value="" class="op_hide">BNE-RG99999999</option>
+								<option value="01" class="op_normal">BNE-RG99999999</option>
+								<option value="02" class="op_normal">BNE-RG99999999</option>
+								<option value="03" class="op_normal">BNE-RG99999999</option>
+								<option value="04" class="op_normal">BNE-RG99999999</option>
+							</select>
+							<input type="text" id="supplier_name" class="col_width20" value="">
+						</td>
+					</tr>
+					<tr id="IndividualApprovalNumber">
+						<td class="leftTD1" colspan="2">個別稟議番号</td>
+						<td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜個別稟議番号＞</p></div></td>
+						<td class="rightTD" colspan="4">
+							<input type="text" id="supplier_name" class="col_width12" value="">
+							<input type="text" id="supplier_name" class="col_width20" value="">
+						</td>
+					</tr>
+					<tr>
+						<td class="leftTD1">
+							職務権限基準番号<br>
+							<input type="button" class="push_btn btn_inner" value="職務権限基準番号検索">
+						</td>
+						<td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+        				<td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜職務権限基準番号＞</p></div></td>
+       					<td class="rightTD1" colspan="2" style="vertical-align: top;">
+							<select class="cb_placeholder col_width12" style="height: 28px;width: 95%;margin-top: 1px;">
+								<option value="" class="op_hide">Ⅰ-(1)-1-3)</option>
+								<option value="01" class="op_normal">Ⅰ-(1)-1-3)</option>
+								<option value="02" class="op_normal">Ⅰ-(1)-1-4)</option>
+								<option value="03" class="op_normal">Ⅰ-(1)-1-5)</option>
+								<option value="04" class="op_normal">Ⅰ-(1)-1-6)</option>
+								<option value="05" class="op_normal">Ⅰ-(1)-1-7)</option>
+							</select>
+						</td>
+						<td class="rightTD2" colspan="2" style="vertical-align: top;">
+							<select class="cb_placeholder col_width12" style="height: 28px;width: 95%;margin-top: 1px;">
+								<option value="" class="op_hide">Ⅱ-(1)-1-1)</option>
+								<option value="01" class="op_normal">Ⅱ-(1)-1-1)</option>
+								<option value="02" class="op_normal">Ⅱ-(1)-1-2)</option>
+								<option value="03" class="op_normal">Ⅱ-(1)-1-3)</option>
+								<option value="04" class="op_normal">Ⅱ-(1)-1-4)</option>
+								<option value="05" class="op_normal">Ⅱ-(1)-1-5)</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="leftTD1" colspan="2">邦貨金額</td>
+						<td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜邦貨金額＞</p></div></td>
+						<td class="rightTD" colspan="4"><input type="text" id="supplier_name" class="col_width20" value=""></td>
+					</tr>
+					<tr>
+						<td class="leftTD1" colspan="2">外貨金額</td>
+						<td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜邦貨金額＞</p></div></td>
+						<td class="rightTD" colspan="4"><input type="text" id="supplier_name" class="col_width20" value=""></td>
+					</tr>
+					<tr>
+						<td class="leftTD1">公開範囲</td>
+						<td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+        				<td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜職務権限基準番号＞</p></div></td>
+						<td class="rightTD" colspan="4">
+							<div>
+								<input type="radio" id="contactChoice1" name="contact" value="email" checked>
+								<label for="contactChoice1">経路上に公開</label>
+								<input type="radio" id="contactChoice2" name="contact" value="phone">
+								<label for="contactChoice2">社内に公開</label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="leftTD1">件名</td>
+						<td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+        				<td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜職務権限基準番号＞</p></div></td>
+						<td class="rightTD" colspan="4"><input type="text" id="supplier_name" class="col_width20" value=""></td>
+					</tr>
+					<tr>
+						<td class="leftTD1">稟議内容<br>
+							<input type="button" class="push_btn btn_inner" value="プリセット選択">
+						</td>
+						<td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+        				<td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜職務権限基準番号＞</p></div></td>
+						<td class="rightTD" colspan="4" style="font-size:15px;">
+							<textarea id="textarea4-1" class="textarea-group4 textarea-group4-1" maxlength="250"
+								style="height: 70px;width:85%;border-radius: 10px;"></textarea>
+							残<label id="laveCount4-1">250</label>文字
+						</td>
+					</tr>
+					<tr>
+						<td class="leftTD1" colspan="2">契約期間</td>
+						<td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜職務権限基準番号＞</p></div></td>
+						<td class="rightTD" colspan="4">
+							<input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+							<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn"
+								fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd"
+									d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z" />
+								<path fill-rule="evenodd"
+									d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+							</svg>
+							～
+							<input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+							<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn"
+								fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd"
+									d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z" />
+								<path fill-rule="evenodd"
+									d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+							</svg>
+						</td>
+					</tr>
+					<tr>
+						<td class="leftTD1" colspan="2">添付ファイル</td>
+						<td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜職務権限基準番号＞</p></div></td>
+						<td class="rightTD" colspan="4">
+							<div id="fileTextField" ondragover="event.preventDefault();">
+								ここにドロップ&ドラッグしてください。<br />
+								または
+								<!--TODO:-->
+								<label class="upfile" id="fileSelect" style="color:#2BCAFA;"
+									onclick="">ファイルを選択...</label><br />
+								<label style="color:red">ファイルを設定後に、別ウィンドウ/別タブでシステムを開くと、ファイル・データがはそうする場合があります。</label>
+							</div>
+							<input id="fileField" type="file" name="fileField" size="28"
+								onchange="fileFieldOnChange(this.value)" style="display: none;width: 70%;" />
+							<div id="fileNamefield" style="display: none;font-size: 15px;">
+								<input id="fileNameInput" type="text"
+									style="width:250px;background: #F2F2F2;border-width: 0.5px;">
+								<button id="delectFileBtn" value="''">削除</button>
+								<input type="text" id="textarea2-2" class="textarea-group2 textarea-group2-2"
+									style="height: 25px;width: 510px;border-radius:6px;border-width:0.5px;">
+								残<label id="laveCount2-2">100</label>文字<br />
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="leftTD1" colspan="2">
+							関連文書<br>
+							<input type="button" class="push_btn btn_inner" value="関連文書検索">
+						</td>
+						<td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜職務権限基準番号＞</p></div></td>
+						<td class="rightTD" colspan="4">
+							<select class="cb_placeholder col_width12" style="height: 28px;margin-bottom: 1px;">
+								<option value="" class="col_width10">BNE-RG99999999</option>
+								<option value="01" class="op_normal">BNE-RG99999999</option>
+								<option value="02" class="op_normal">BNE-RG99999999</option>
+								<option value="03" class="op_normal">BNE-RG99999999</option>
+								<option value="04" class="op_normal">BNE-RG99999999</option>
+							</select>
+							<input type="text" class="input_basicTXT" style="margin-bottom: 1px;width: 20em;" value=""><br>
+							<select class="cb_placeholder col_width12" style="height: 28px;">
+								<option value="" class="col_width10">BNE-RG99999999</option>
+								<option value="01" class="op_normal">BNE-RG99999999</option>
+								<option value="02" class="op_normal">BNE-RG99999999</option>
+								<option value="03" class="op_normal">BNE-RG99999999</option>
+								<option value="04" class="op_normal">BNE-RG99999999</option>
+							</select>
+							<input type="text" class="input_basicTXT" style="margin-bottom: 1px;width: 20em;" value="">
+					</tr>
+					<tr>
+						<td class="leftTD1" colspan="2">内容補足</td>
+						<td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜職務権限基準番号＞</p></div></td>
+						<td class="rightTD" colspan="4" style="font-size:15px;">
+							<!--TODO: onkeyuop="textarea1Change(this)"-->
+							<textarea id="textarea3-1" class="textarea-group3 textarea-group3-1"
+								style="height: 70px;width:85%;border-radius: 10px;"></textarea>
+							残<label id="laveCount3-1">200</label>文字
+						</td>
+					</tr>
+					<tr>
+						<td class="leftTD1" colspan="2">検索キーワード</td>
+						<td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜職務権限基準番号＞</p></div></td>
+						<td class="rightTD" colspan="4">
+							<input id="textarea1-1" class="col_width10" maxlength="50" type="text"
+								placeholder="例）〇〇契約　プロジェクトコードがある場合はここに記入してください。" style="height: 25px;width:85%;margin-bottom: 1px;">
+							残<label id="laveCount1-1">50</label>文字<br />
+							<input id="textarea1-2" class="col_width10" maxlength="50" type="text"
+								placeholder="例）〇〇開発" style="height: 25px;width:85%;margin-bottom: 1px;">
+							残<label id="laveCount1-2">50</label>文字<br />
+							<input id="textarea1-3" class="col_width10" maxlength="50" type="text"
+								placeholder="例）〇〇事業部" style="height: 25px;width:85%;">
+							残<label id="laveCount1-3">50</label>文字<br />
+						</td>
+					</tr>
+				</table>
+				<div style="margin:10px auto 10px;width:50%;">
+					<button id="motoroBtn" class="push_btn btn_m"
+						onClick="gotoPage('OrderPremise.html')">戻る</button>&nbsp;
+					<button id="saveAllChanges" class="push_btn btn_m" disabled>一時保存</button>&nbsp;
+					<button class="push_btn btn_m" onClick="gotoPage('OrderApprovalRouteInput.html')">次へ</button>&nbsp;
+					<button id="hatchuNaiyouKakuninnHeBtn" class="push_btn btn_m" style="width:150px;"
+						onClick="gotoPage('OrderConfirmationScreen.html')">発注内容確認へ</button>
+				</div>
+
+			</section>
+		</article>
+		<!----- メインコンテンツ END ----->
+
+		<!----- フッター ----->
+		<article style="position: fixed;bottom: 0;width: 100%;">
+			<!-- 先頭へスクロール -->
+			　<section>
+				<div id="toTopImg" class="area_foottool">
+					<p class="btn_goto_top">↑</p>
+				</div>
+			</section>
+			<!-- Copyright表記 -->
+			<section>
+				<footer>Copyright xxxxxxxxxxxxxxxxxxxxxxxxxxx</footer>
+			</section>
+		</article>
+		<!----- フッター END ----->
+
+	</div>
+
+<script>
+	function skip() {
+		window.location.href = "index5.html";
+	}
+</script>
+<script src="../js/include/jquery-1.12.4.js"></script>
+<script src="../js/include/jquery-3.5.1.min.js"></script>
+<script src="../js/include/jquery-ui-1.12.1.js"></script>
+<script src="../js/include/jquery-ui-1.12.1.min.js"></script>
+<script src="../js/common/common.js"></script>
+<script src="../js/common/dragAndDrop.js"></script>
+<script src="../js/page/OrderBasicContentInput.js"></script>
+<script>
+    $("#textarea1-1").bind("input propertychange", function(){
+      var lengthA=50-$(this).val().length;
+      if(lengthA<0){
+        lengthA=0;
+      };
+      $("#laveCount1-1").text(lengthA);
+	});
+	$("#textarea1-2").bind("input propertychange", function(){
+      var lengthB=50-$(this).val().length;
+      if(lengthB<0){
+        lengthB=0;
+      };
+      $("#laveCount1-2").text(lengthB);
+	});
+	$("#textarea1-3").bind("input propertychange", function(){
+      var lengthC=50-$(this).val().length;
+      if(lengthC<0){
+        lengthC=0;
+      };
+      $("#laveCount1-3").text(lengthC);
+	});
+</script>
+</body>
+
+</html>

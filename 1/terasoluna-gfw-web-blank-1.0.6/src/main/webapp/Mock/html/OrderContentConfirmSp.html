@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>次期発注管理システム（仮称）</title>
+<meta name="description" content="稟議・申請ワークフロー">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../css/common/main.css">
+<link rel="stylesheet" href="../css/include/jquery-ui-1.12.1.css">
+<link rel="stylesheet" href="../css/common/lableTable.css">
+</head>
+<body>
+<div class="wrapper">
+
+<!----- (PC)受入内容確認画面 ----->
+
+<!----- ヘッダー ----->
+<header>
+  <div class="title_div"><span class="title_word" style="width: 100%;">次期発注管理システム（仮称）</span></div>
+</header>
+<!----- ヘッダー END ----->
+<h1 style="margin: auto;">発注一覧</h1>
+<!----- メインコンテンツ ----->
+<article id="main_win_area" style="height: auto; width: 100%;">
+      <div style="margin:10px auto 10px;width:100%;display:flex;align-items: center;">
+        <p>
+          <div>
+            <input type="button" class="push_btn btn_m" value="戻る" onClick="javascript:history.back(-1);" ><br><br>
+            <input type="button" class="push_btn btn_m" value="発注決裁" disabled >
+            <input type="button" class="push_btn btn_m" value="差し戻し" disabled>
+            <input type="button" class="push_btn btn_m" value="否決" disabled>
+          </div>
+        </p>
+      </div>
+      <div>
+      <div style="margin:10px auto 10px;width:100%;height:50px;background-color: #9dc2e8;display:flex;align-items: center;">
+        <div>
+          <p style="margin-left: 10px;" >発注前提</p>
+        </div>
+        <div style="flex: 1;text-align: right;">
+          <input id="AcceptBasicBtn" type="button" value="-" style="border: none;width: 40px;height: 40px;background-color: #2f5893;color: #FFF;font-weight: bold;font-size: 25px;">
+        </div>
+      </div>
+      <div id="AcceptBasic">
+      <table class="tbl_table" style="width: 100%;">
+        <tr>
+            <td class="firstTD" colspan="3">申請区分</td>
+            <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜申請区分＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">受入</label></td></tr>
+        <tr>
+            <td class="firstTD" colspan="3">基本契約</td>
+            <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜基本契約＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">XXXXX-99999999</label><br>
+          <label class="label_grey">○○業務委託基本契約書</label><br>
+          <label class="label_grey">2016/12/25</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">予算稟議</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜予算稟議＞</p></div></td>
+      </tr>
+      <tr><td class="rightTD" colspan="4"><label class="label_grey">BNE-RG99999999</label><br>
+        <label class="label_grey">○○発注の件</label><br>
+        <label class="label_grey">2016/12/25</label></td>
+      </tr>
+      <tr>
+        <td class="firstTD" colspan="3">法務相談</td>
+        <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜法務相談＞</p></div></td>
+      </tr>
+      <tr><td class="rightTD" colspan="4">
+        <label class="label_grey">ZRCRO-99999999</label><br>
+        <label class="label_grey">発注の件</label></td>
+      </tr>
+      <tr>
+        <td class="firstTD" colspan="3">関連文書</td>
+        <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜関連文書＞</p></div></td>
+      </tr>
+      <tr><td class="rightTD" colspan="4">
+        <label class="label_grey">BNE-RG99999999</label><br>
+        <label class="label_grey">○○○○○○○○○○○○○○○○○○○○</label></td>
+      </tr>
+      <tr>
+            <td class="firstTD" colspan="3">決裁後補足</td>
+            <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜決裁後補足＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><textarea name="" id="" cols="50" rows="6"></textarea></td>
+        </tr>
+      </table>
+      </div>
+      </div>
+      <div>
+      <div style="margin:10px auto 10px;width:100%;height:50px;background-color: #9dc2e8;display:flex;align-items: center;">
+        <div>
+          <p style="margin-left: 10px;" >発注基本内容</p>
+        </div>
+        <div style="flex: 1;text-align: right;">
+          <input id="AcceptDetailBtn" type="button" value="-" style="border: none;width: 40px;height: 40px;background-color: #2f5893;color: #FFF;font-weight: bold;font-size: 25px;">
+        </div>
+      </div>
+      <div id="AcceptDetail">
+      <table class="tbl_table" style="width: 100%;">
+        <tr>
+          <td class="firstTD" colspan="3">発注番号</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注番号＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">XX9999-999</label></td></tr>
+        <tr>
+          <td class="firstTD" colspan="3">年度</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜年度＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">2019</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">起案日</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜起案日＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">06/01</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">起案者</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜起案者＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">発注 太郎</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">起案部署</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜起案部署＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">情報システム部事業支援セクションネットワークエンターテインメントユニットチーム</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">件名</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜件名＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">〇〇〇の件</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">発注タイプ</td>
+        <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注タイプ＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">開発委託・宣伝・一般購買</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">発注担当者</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注担当者＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">発注 太郎</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">発注担当部署</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注担当部署＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">情報システム部事業支援セクションネットワークエンターテインメントユニットチーム</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">仕入先名</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜仕入先名＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">○○○○○○○○○○株式会社</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">支払条件</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜支払条件＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">即時支払 国内振込</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">銀行名</td>
+        <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜銀行名＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">ﾐｽﾞﾎ ｼﾝﾖｺﾊﾏ</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">銀行口座</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜銀行口座＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">（普）1234567</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">手数料負担</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜手数料負担＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">当方</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">通貨</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜通貨＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">JPY：日本円</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">源泉税</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜源泉税＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">源泉税あり</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">部署名 担当者</td>
+        <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜部署名 担当者＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">第1営業部　○○太郎　様</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">発注パターン</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注パターン＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">○○○○○○○○○○</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">注文日</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜注文日＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">2019/06/01</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">押印請求</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜押印請求＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">押印請求あり</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">印紙貼付</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜印紙貼付＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">印紙あり</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">印紙額</td>
+        <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜印紙額＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">200</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">印紙費用負担部署</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜印紙費用負担部署＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">情報システム部事業支援セクションネットワークエンターテインメントユニットチーム</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">発注書</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注書 ＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">○○○○○.pdf</label><br>
+          <label class="label_grey">添付した契約書のコメント</label></td>
+        </tr>
+      </table>
+      </div>
+    </div>
+
+    <div>
+      <div style="margin:10px auto 10px;width:100%;height:50px;background-color: #9dc2e8;display:flex;align-items: center;">
+        <div>
+          <p style="margin-left: 10px;" >発注明細内容</p>
+        </div>
+        <div style="flex: 1;text-align: right;">
+          <input id="AcceptRouteBtn" type="button" value="-" style="border: none;width: 40px;height: 40px;background-color: #2f5893;color: #FFF;font-weight: bold;font-size: 25px;">
+        </div>
+      </div>
+      <div id="AcceptRoute">
+      <table class="tbl_table" style="width: 100%;">
+        <tr>
+          <td class="firstTD" colspan="3">発注明細内容</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注明細内容＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">2/2_PS4/Xone/Steam/NSW/WEGAME</br>「○○○○○○○ ○○○○○○」2020年度最終本制作開発および業務委託</label></td></tr>
+        <tr>
+          <td class="firstTD" colspan="3">納品物・製品明細</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜年納品物・製品明細度＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">2/2_「本製品」に係る無料アップデートデータ第○弾の開発業務</br>・「本製品」に係る無料アップデートデータ第○弾のキャラクター仕様書
+        </label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">発注数量</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注数量＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">1</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">単価</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜単価＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">1,000</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">合計金額</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜合計金額＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">1,000</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">通貨</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜通貨＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">JPY:日本円</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">税込金額</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜税込金額＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">1,00</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">消費税区分</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜消費税区分＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">外税 8%</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">納入期日</td>
+        <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜納入期日＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">2020/01/01</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">検収予定日</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜検収予定日＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">2020/01/01</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">支払日</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜支払日＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">2020/01/01</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">サービス開始予定日</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜サービス開始予定日＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">2020/01/01</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">原価センタ</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜原価センタ＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey"></label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">WBS</td>
+        <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜WBS＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey"></label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">摘要</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜摘要＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <textarea name="" id="" cols="50" rows="6"></textarea></td>
+        </tr>
+        <!-- <tr><br></tr> -->
+        <tr>
+          <td class="firstTD" colspan="3">合計金額</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜合計金額＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">1,000</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">税込</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜税込＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">1,000</label></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">JPY:日本円<br>源泉税タイプ：原稿／著作権料</label></td>
+        </tr>
+      </table>
+      </div>
+    </div>
+
+    <div>
+      <div style="margin:10px auto 10px;width:100%;height:50px;background-color: #9dc2e8;display:flex;align-items: center;">
+        <div>
+          <p style="margin-left: 10px;" >稟議内容</p>
+        </div>
+        <div style="flex: 1;text-align: right;">
+          <input id="approval_content_btn" type="button" value="-" style="border: none;width: 40px;height: 40px;background-color: #2f5893;color: #FFF;font-weight: bold;font-size: 25px;">
+        </div>
+      </div>
+      <div id="approval_content" >
+      <table class="tbl_table" style="width: 100%;">
+        <tr>
+          <td class="firstTD" colspan="3">稟議要否</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜稟議要否＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">稟議が必要な発注</label></td></tr>
+        <tr>
+          <td class="firstTD" colspan="3">個別稟議番号</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜個別稟議番号＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">BNE-RG99999999</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">職務権限基準番号</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜職務権限基準番号＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">1-2-000000</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">邦貨金額</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜邦貨金額＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">1,000</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">外貨金額</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜外貨金額＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">米ドル (USD) 925</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">公開範囲</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜公開範囲＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">社内に公開</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">発注合計金額</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注合計金額＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">1,000</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">発注税込金額</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注税込金額＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">10,800</label></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">JPY:日本円<br>源泉税タイプ：原稿／著作権料</label></td>
+        <tr>
+          <td class="firstTD" colspan="3">件名</td>
+        <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜件名＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">〇〇〇の件</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">稟議内容</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜稟議内容＞</p></div></td>
+        </tr>
+        <tr>
+          <td class="rightTD" colspan="4"><textarea name="" id="" cols="50" rows="6" style="text-align: left;">
+            １．企画概要
+            (1）名    称　　 ：○○○○　
+            (2）ﾌﾟﾗｯﾄﾌｫｰﾑ　：
+            (3）配 信 国　　：
+            </textarea></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">契約期間</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜契約期間＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">//TODO</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">関連文書</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜関連文書＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">//TODO</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">内容補足</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜内容補足＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><textarea name="" id="" cols="50" rows="6"></textarea></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">検索キーワード</td>
+        <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜検索キーワード＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">〇〇契約<br>〇〇開発<br>〇〇事業部</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">摘要</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜摘要＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><textarea name="" id="" cols="50" rows="6"></textarea></td>
+        </tr>
+        <!-- <tr><br></tr> -->
+        <tr>
+          <td class="firstTD" colspan="3">合計金額</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜合計金額＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">1,000</label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">税込</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜税込＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">1,000</label></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">JPY:日本円<br>源泉税タイプ：原稿／著作権料</label></td>
+        </tr>
+      </table>
+      </div>
+    </div>
+
+    <div>
+      <div style="margin:10px auto 10px;width:100%;height:50px;background-color: #9dc2e8;display:flex;align-items: center;">
+        <div>
+          <p style="margin-left: 10px;" >発注承認ルート</p>
+        </div>
+        <div style="flex: 1;text-align: right;">
+          <input id="order_approval_route_btn" type="button" value="-" style="border: none;width: 40px;height: 40px;background-color: #2f5893;color: #FFF;font-weight: bold;font-size: 25px;">
+        </div>
+      </div>
+      <div id="order_approval_route" >
+      <table class="tbl_table" style="width: 100%;">
+        <tr>
+          <td class="firstTD" colspan="3">起案者</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜起案者＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">発注　太郎 経営推進室 情報システム部 情報システム課</label><br>
+          <label class="label_grey"></label><label class="label_grey"></label>
+        </td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">審査者</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜審査者 ＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4"><label class="label_grey">ｘｘ審査グループ</label><br>
+          <label class="label_grey"></label><label class="label_grey"></label></td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">承認者1</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜承認者1＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">発注　太郎 経営推進室 情報システム部 情報システム課</label><br>
+          <label class="label_grey"></label><label class="label_grey"></label>
+        </td>
+        </tr>
+        <tr>
+          <td class="firstTD" colspan="3">承認者2</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜承認者2＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">発注　太郎 経営推進室 情報システム部 情報システム課</label><br>
+          <label class="label_grey"></label><label class="label_grey"></label>
+        </td></tr>
+        <tr>
+          <td class="firstTD" colspan="3">承認者3</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜承認者3＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">発注　太郎 経営推進室 情報システム部 情報システム課</label><br>
+          <label class="label_grey"></label><label class="label_grey"></label>
+        </td></tr>
+        <tr>
+          <td class="firstTD" colspan="3">協議者</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜協議者＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">発注　太郎 経営推進室 情報システム部 情報システム課</label><br>
+          <label class="label_grey"></label><label class="label_grey"></label>
+        </td></tr>
+        <tr>
+          <td class="firstTD" colspan="3">決裁者</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜決裁者＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">発注　太郎 経営推進室 情報システム部 情報システム課</label><br>
+          <label class="label_grey"></label><label class="label_grey"></label>
+        </td></tr>
+        <tr>
+          <td class="firstTD" colspan="3">報告者</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜報告者＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">発注　太郎 経営推進室 情報システム部 情報システム課</label><br>
+          <label class="label_grey"></label><label class="label_grey"></label>
+        </td></tr>
+        <tr>
+          <td class="firstTD" colspan="3">閲覧者</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜閲覧者＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey">発注　太郎 経営推進室 情報システム部 情報システム課</label><br>
+          <label class="label_grey"></label><label class="label_grey"></label>
+        </td></tr>
+        <tr>
+          <td class="firstTD" colspan="3">通知者</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜通知者＞</p></div></td>
+        </tr>
+        <tr><td class="rightTD" colspan="4">
+          <label class="label_grey_short">通知者1（XXXXX）</label></br>
+            <label class="label_grey_short">通知者3（XXXXX）</label></br>
+            <label class="label_grey_short">通知者4（XXXXX）</label></br>
+            <label class="label_grey_short">通知者5（XXXXX）</label></br>
+            <label class="label_grey_short">通知者6（XXXXX）</label>
+        </td></tr>
+      </table>
+      </div>
+    </div>
+    <div>
+      </br>
+      <table class="tbl_table" style="width: 100%;">
+        <tr>
+          <td class="firstTD" colspan="2">コメント</td>
+          <td class="thirdTD"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜コメント＞</p></div></td>
+          <td class="rightTD" colspan="2">
+            <textarea cols="10" rows="4" style="width:80%;" id="comment" maxlength="140"></textarea>
+            残<label class="lavecount_4" id="comment_lavecount">140</label>文字
+          </td>
+        </tr>
+      </table>
+    </div>
+      <div style="margin:10px auto 10px;width:100%;display:flex;align-items: center;">
+        <p>
+          <div>
+          <input type="button" class="push_btn btn_m" value="戻る" onClick="javascript:history.back(-1);" ><br><br>
+          <input type="button" class="push_btn btn_m" value="発注決裁" disabled >
+          <input type="button" class="push_btn btn_m" value="差し戻し" disabled>
+          <input type="button" class="push_btn btn_m" value="否決" disabled>
+        </p>
+      </div>
+  </article>
+  <iframe src="" name="show" style="width: 0;height: 0;"></iframe>
+  <!----- メインコンテンツ END ----->
+
+  <!----- フッター ----->
+  <article style="position: fixed;bottom: 0;width: 100%;">
+    <!-- Copyright表記 -->
+    <section>
+    <footer>Copyright xxxxxxxxxxxxxxxxxxxxxxxxxxx</footer>
+    </section>
+  </article>
+  <!----- フッター END ----->
+  
+  </div>
+
+<script src="../js/include/jquery-1.12.4.js"></script>
+<script src="../js/include/jquery-3.5.1.min.js"></script>
+<script src="../js/include/jquery-ui-1.12.1.js"></script>
+<script src="../js/include/jquery-ui-1.12.1.min.js"></script>
+<script src="../js/include/jquery.ui.datepicker-ja.js"></script>
+<script src="../js/common/common.js"></script>
+  <script>
+    $("#comment").bind("input propertychange", function(){
+      $("#comment_lavecount").text(140-$(this).val().length);
+    });
+  </script>
+  <script>
+    $("#AcceptBasicBtn").click(function() {
+      var btnplusminus=$(this).val();
+        if( btnplusminus=="-" ){
+          $(this).val("+");
+          $("#AcceptBasic").slideUp( "slow" );
+        } else {
+          if( btnplusminus=="+" ){
+            $(this).val("-");
+            $("#AcceptBasic").slideDown( "slow" );
+          }
+        };
+    });
+  </script>
+  <script>
+    $("#AcceptDetailBtn").click(function() {
+      var btnplusminus=$(this).val();
+        if( btnplusminus=="-" ){
+          $(this).val("+");
+          $("#AcceptDetail").slideUp( "slow" );
+        } else {
+          if( btnplusminus=="+" ){
+            $(this).val("-");
+            $("#AcceptDetail").slideDown( "slow" );
+          }
+        };
+    });
+  </script>
+  <script>
+    $("#AcceptRouteBtn").click(function() {
+      var btnplusminus=$(this).val();
+        if( btnplusminus=="-" ){
+          $(this).val("+");
+          $("#AcceptRoute").slideUp( "slow" );
+        } else {
+          if( btnplusminus=="+" ){
+            $(this).val("-");
+            $("#AcceptRoute").slideDown( "slow" );
+          }
+        };
+    });
+
+    $("#approval_content_btn").click(function() {
+      var btnplusminus=$(this).val();
+        if( btnplusminus=="-" ){
+          $(this).val("+");
+          $("#approval_content").slideUp( "slow" );
+        } else {
+          if( btnplusminus=="+" ){
+            $(this).val("-");
+            $("#approval_content").slideDown( "slow" );
+          }
+        };
+    });
+
+    $("#order_approval_route_btn").click(function() {
+      var btnplusminus=$(this).val();
+        if( btnplusminus=="-" ){
+          $(this).val("+");
+          $("#order_approval_route").slideUp( "slow" );
+        } else {
+          if( btnplusminus=="+" ){
+            $(this).val("-");
+            $("#order_approval_route").slideDown( "slow" );
+          }
+        };
+    });
+
+  </script>
+</body>
+</html>

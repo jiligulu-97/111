@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>次期発注管理システム（仮称）</title>
+  <meta name="description" content="稟議・申請ワークフロー">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"  href="../css/include/jquery-ui-1.12.1.css">
+  <link rel="stylesheet"  href="../css/common/main.css">
+</head>
+
+<body>
+  <div class="wrapper">
+ 
+    <!----- ヘッダー START----->
+    <header class="lnk_menu"><img src="../image/logo_s.png" class="img_logo">次期発注管理システム（仮称）</header>
+    <!----- ヘッダー END ----->
+ 
+    <!----- パンくず ----->
+      <div id="features">
+        <div class="feature-row">
+          <div class="feature-col">
+            <img src="../image/image001.png" width=80px>
+            <h4>基本内容入力</h4>
+          </div>
+          <div class="feature-col">
+            <img src="../image/image016.png" width=20px>
+          </div>
+          <div class="feature-col">
+            <img src="../image/image002.png" width=80px>
+            <h4>明細内容入力</h4>
+          </div>
+          <div class="feature-col">
+            <img src="../image/image016.png" width=20px>
+          </div>
+          <div class="feature-col">
+            <img src="../image/selected003.png" width=80px>
+            <h4>承認ルート入力</h4>
+          </div>
+          <div class="feature-col">
+            <img src="../image/image016.png" width=20px>
+          </div>
+          <div class="feature-col">
+            <img src="../image/image004.png" width=80px>
+            <h4>内容確認</h4>
+          </div>
+          <div class="feature-col">
+            <img src="../image/image016.png" width=20px>
+          </div>
+          <div class="feature-col">
+            <img src="../image/image005.png" width=80px>
+            <h4>登録完了</h4>
+          </div>
+        </div>
+      </div>
+      <!----- パンくず END -----> 
+      <!----- メインコンテンツ START ----->
+      <article id="main_win_area" style="height: auto;">
+
+        <h1 class="hks_title">受入承認ルート入力</h1>
+
+
+        <div style="margin:10px auto 10px;width:50%;">
+          <button id="motoroBtn" class="push_btn btn_m" onClick="gotoPage('AcceptanceDetailInput.html')">戻る</button>&nbsp;
+          <button id="saveAllChanges" class="push_btn btn_m" disabled>一時保存</button>&nbsp;
+          <button class="push_btn btn_m" onClick="gotoPage('AcceptanceContentConfirm.html')">次へ</button>&nbsp;
+          <button id="hatchuNaiyouKakuninnHeBtn" class="push_btn btn_m" style="width:150px;" onClick="gotoPage('AcceptanceContentConfirm.html')"
+            disabled>発注内容確認へ</button>
+        </div>
+
+        <table class="tbl_table" >
+			<tr>
+			  <td class="leftTD1" colspan="2">受入承認者1</td>
+			  <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜受入承認者1＞</p></div></td>
+			  <td class="rightTD1" >
+				<input type="text" value="承認　一郎（チーフ）" readonly id="shouninsha1_01" class="input_basicTXT" title="承認　一郎（チーフ）" draggable="true" ondragstart="dragstart();" ondragover="dragover();" ondrop="drop(this);" >
+			  </td>
+			  <td class="rightTD2" ></td>
+			</tr>
+			<tr>
+			  <td class="leftTD1" colspan="2">受入承認者2</td>
+			  <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜受入承認者2＞</p></div></td>
+			  <td class="rightTD1" ><input class="col_width20" type="text" placeholder="名前の一部を入力すると候補を表示します" maxlength='32' style="width: 98%;"></td>
+			  <td class="rightTD2" ></td>
+			</tr>
+			<tr>
+			  <td class="leftTD1">受入最終承認者</td>
+			  <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+			  <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜受入最終承認者＞</p></div></td>
+			  <td class="rightTD1" ><input class="col_width20" type="text" placeholder="名前の一部を入力すると候補を表示します" maxlength='32' style="width: 98%;"></td>
+			  <td class="rightTD2" ></td>
+			</tr>
+			<tr>
+			  <td class="leftTD1">計上承認者</td>
+			  <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+			  <td class="leftTD3" ><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜計上承認者＞</p></div></td>
+			  <td class="rightTD1" >
+				<input class="col_width20" type="text" placeholder="名前の一部を入力すると候補を表示します" maxlength='32' style="width: 98%;margin-bottom: 1px;"></br>
+				<input class="col_width20" type="text" placeholder="名前の一部を入力すると候補を表示します" maxlength='32' style="width: 98%;">
+			  </td>
+			  <td class="rightTD2" style="vertical-align: top;">
+				<input class="col_width20" type="text" placeholder="名前の一部を入力すると候補を表示します" maxlength='32' style="width: 98%;"></br>
+				&nbsp;</br>
+			  </td>
+			</tr>
+			<tr>
+			  <td class="leftTD1" colspan="2" >通知者</td>
+			  <td class="leftTD3" ><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜通知者＞</p></div></td>
+			  <td class="rightTD1" >
+				<input class="col_width20" type="text" placeholder="名前の一部を入力すると候補を表示します" maxlength='32' style="width: 98%;margin-bottom: 1px;"></br>
+				<input class="col_width20" type="text" placeholder="名前の一部を入力すると候補を表示します" maxlength='32' style="width: 98%;margin-bottom: 1px;"></br>
+				<input class="col_width20" type="text" placeholder="名前の一部を入力すると候補を表示します" maxlength='32' style="width: 98%;margin-bottom: 1px;"></br>
+				<input class="col_width20" type="text" placeholder="名前の一部を入力すると候補を表示します" maxlength='32' style="width: 98%;margin-bottom: 1px;"></br>
+				<input class="col_width20" type="text" placeholder="名前の一部を入力すると候補を表示します" maxlength='32' style="width: 98%;">
+			</td>
+			  <td class="rightTD2" >
+				  <input class="col_width20" type="text" placeholder="名前の一部を入力すると候補を表示します" maxlength='32' style="width: 98%;margin-bottom: 1px;"></br>
+				  <input class="col_width20" type="text" placeholder="名前の一部を入力すると候補を表示します" maxlength='32' style="width: 98%;margin-bottom: 1px;"></br>
+				  <input class="col_width20" type="text" placeholder="名前の一部を入力すると候補を表示します" maxlength='32' style="width: 98%;margin-bottom: 1px;"></br>
+				  <input class="col_width20" type="text" placeholder="名前の一部を入力すると候補を表示します" maxlength='32' style="width: 98%;margin-bottom: 1px;"></br>
+				  <input class="col_width20" type="text" placeholder="名前の一部を入力すると候補を表示します" maxlength='32' style="width: 98%;">
+			  </td>
+			</tr>
+		  </table>
+
+        
+        <div style="margin:10px auto 10px;width:50%;">
+          <button id="motoroBtn" class="push_btn btn_m" onClick="gotoPage('AcceptanceDetailInput.html')">戻る</button>&nbsp;
+          <button id="saveAllChanges" class="push_btn btn_m" disabled>一時保存</button>&nbsp;
+          <button class="push_btn btn_m" onClick="gotoPage('AcceptanceContentConfirm.html')">次へ</button>&nbsp;
+          <button id="hatchuNaiyouKakuninnHeBtn" class="push_btn btn_m" style="width:150px;" onClick="gotoPage('.html')"
+            disabled>発注内容確認へ</button>
+        </div>
+
+
+      </article>
+
+      <!----- メインコンテンツ END ----->
+      <!----- フッター ----->
+
+      <article style="position: fixed;bottom: 0;width: 100%;">
+        <!-- 先頭へスクロール -->
+        　<section>
+          <div id="toTopImg" class="area_foottool">
+            <p class="btn_goto_top">↑</p>
+          </div>
+        </section>
+        <!-- Copyright表記 -->
+        <section>
+          <footer>Copyright xxxxxxxxxxxxxxxxxxxxxxxxxxx</footer>
+        </section>
+      </article>
+      <!----- フッター END ----->
+
+  </div>
+  <script src="../js/include/jquery-1.12.4.js"></script>
+  <script src="../js/include/jquery-3.5.1.min.js"></script>
+  <script src="../js/include/jquery-ui-1.12.1.js"></script>
+  <script src="../js/include/jquery-ui-1.12.1.min.js"></script>
+  <script src="../js/include/jquery.ui.datepicker-ja.js"></script>
+  <script src="../js/common/common.js"></script>
+  <script>
+	function dragstart()
+	{
+	  //ドラッグ元のIDを保存
+	  event.dataTransfer.setData("text/plain", event.target.id);
+	}
+	function dragover()
+	{
+	  event.preventDefault();
+	}
+	function drop(obj)
+	{
+	  event.preventDefault();
+	  //ドラッグしている画像のIDを取得
+	  var dragid = event.dataTransfer.getData("text/plain");
+	  //ドロップ先の内容とツールチップを保存
+	  var buff = obj.value;
+	  var title = obj.title;
+	  //ドロップ先の内容とツールチップにドラッグ元の内容とツールチップを上書き
+	  obj.value = document.getElementById(dragid).value;
+	  obj.title = document.getElementById(dragid).title;
+	  //保存していた内容とツールチップをドラッグ元の内容とツールチップへ上書き
+	  document.getElementById(dragid).value = buff;
+	  document.getElementById(dragid).title = title;
+	}
+  </script>
+</body>
+
+</html>

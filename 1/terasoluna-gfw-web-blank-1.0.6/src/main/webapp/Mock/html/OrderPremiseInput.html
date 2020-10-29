@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>次期発注管理システム（仮称）</title>
+<meta name="description" content="稟議・申請ワークフロー">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"  href="../css/include/jquery-ui-1.12.1.css">
+<link rel="stylesheet"  href="../css/common/main.css">
+</head>
+<body>
+<div class="wrapper">
+
+<!----- (PC)発注前提入力画面 ----->
+
+<!----- ヘッダー START----->
+<header class="lnk_menu" ><img src="../image/logo_s.png" class="img_logo">次期発注管理システム（仮称）</header>
+<!----- ヘッダー END ----->
+
+<!----- パンくず ----->
+<div id="features">
+  <div class="feature-row">
+    <div class="feature-col">
+      <img src="../image/selected001.png" width=80px>
+      <h4>ガバナンス確認</h4>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image016.png" width=20px>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image002.png" width=80px>
+      <h4>基本内容入力</h4>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image016.png" width=20px>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image003.png" width=80px>
+      <h4>明細内容入力</h4>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image016.png" width=20px>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image004.png" width=80px>
+      <h4>稟議内容入力</h4>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image016.png" width=20px>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image005.png" width=80px>
+      <h4>承認ルート入力</h4>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image016.png" width=20px>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image006.png">
+      <h4>内容確認</h4>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image016.png" width=20px>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image007.png">
+      <h4>登録完了</h4>
+    </div>
+  </div>
+</div>
+<!----- パンくず END ----->
+
+<!----- メインコンテンツ ----->
+<article id="main_win_area" style="height: auto;">
+    <h1 class="hks_title" >発注前提入力</h1>
+    <div style="margin:10px auto 10px;width:50%;">
+      <p>
+        <div>
+        <input type="button" class="push_btn btn_m" value="戻る" onClick="javascript:history.back(-1);" >
+        <button id="saveAllChanges" class="push_btn btn_m">一時保存</button>
+        <input type="button" class="push_btn btn_m" value="次へ" onClick="gotoPage('OrderBasicContentInput.html')" >
+        <input type="button" class="push_btn btn_m" value="発注内容確認画面へ" onClick="gotoPage('OrderContentConfirm.html')" >
+        </div>
+      </p>
+    </div>
+    <table id="tb_order_zentei_list1" class="tbl_table">
+      <tr>
+        <td class="leftTD1" colspan="2">申請区分</td>
+        <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜申請区分＞</p></div></td>
+        <td class="rightTD" colspan="2">
+          <input id="applicationClassification" type="text" readonly class="input_basicTXT">
+        </td>
+      </tr>
+      <tr>
+        <td></br></td>
+      </tr>
+      <tr>
+        <td class="leftTD1">基本契約</td>
+        <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+        <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜基本契約＞</p></div></td>
+        <td class="rightTD" colspan="2">
+         <input name="khkyk" type="radio" value="1" id="yes"/>あり</input>
+         <input name="khkyk" type="radio" value="0" id="no"/>なし</input>
+         <p id="hide3" style="display:none;"><strong>基本契約書に記載すべき条項を含めて契約締結が必要です。</strong></p>
+        </td>
+      </tr>
+      <tr id="hide1" style="display:none;">
+        <td class="leftTD1" style="border-bottom: 0px;">基本契約番号</td>
+        <td class="leftTD2" rowspan="2"><label style="color:red;float: right;">*</label></td>
+        <td class="leftTD3" rowspan="2"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜基本契約番号＞</p></div></td>
+        <td class="rightTD" style="border-bottom: 0px;border-right: 0px;width: 20%;">
+          <input id="basicAgreementNum" class="input_alphanumeric col_width08" type="text" placeholder="例）XXXXX-99999999" maxlength='32' style="width: 95%;border: 1px solid #666666;">
+        </td>
+        <td class="rightTD" style="border-bottom: 0px;border-left: 0px;width: 50%;"><label class="label_grey">&nbsp</label></td>
+      </tr>
+      <tr id="hide2" style="display:none;">
+        <td class="leftTD1" style="border-top: 0px;"><input type="button" class="push_btn btn_inner" value="契約書検索" id="keiyakushoSch01"></td>
+        <td class="rightTD" colspan="2" style="border-top: 0px;">
+         <select class="cb_placeholder col_width10" style="width: 100%;height: 28px;">
+          <option value="" class="op_hide">基本契約番号を入力できない場合は、その理由を選択してください</option>
+          <option value="-" class="op_normal"></option>
+          <option value="01" class="op_normal">基本契約の締結を手続き中のため</option>
+          <option value="02" class="op_normal">法務に基本契約書の登録を依頼中のため</option>
+       </select>
+      </td>
+     </tr>
+     <tr>
+        <td class="leftTD1" style="border-bottom: 0px;">予算稟議番号</td>
+        <td class="leftTD2" rowspan="2"><label style="color:red;float: right;">*</label></td>
+        <td class="leftTD3" rowspan="2"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜予算稟議番号＞</p></div></td>
+        <td class="rightTD" style="border-bottom: 0px;border-right: 0px;width: 20%;">
+          <input id="budgetApprovalNum" class="input_alphanumeric col_width08" type="text" placeholder="例）BNE-RG99999999" maxlength='32' style="width: 95%;border: 1px solid #666666;">
+        </td>
+        <td class="rightTD" style="border-bottom: 0px;border-left: 0px;width: 50%;"><label class="label_grey">○○○○○における予算申請の件</label></td>
+     </tr>
+     <tr>
+        <td class="leftTD1" style="border-top: 0px;"><input type="button" class="push_btn btn_inner" value="稟議検索" id="ringiSch01"></td>
+        <td class="rightTD" colspan="2" style="border-top: 0px;">
+         <select class="cb_placeholder col_width10" style="width: 100%;height: 28px;">
+          <option value="" class="op_hide">発注予算を稟議申請していない場合は、その理由を選択してください</option>
+          <option value="-" class="op_normal"></option>
+          <option value="01" class="op_normal">予算稟議を兼ねて発注申請するため</option>
+         </select>
+        </td>
+     </tr>
+     <tr>
+        <td class="leftTD1" style="border-bottom: 0px;">法務相談No</td>
+        <td class="leftTD2" rowspan="2"><label style="color:red;float: right;">*</label></td>
+        <td class="leftTD3" rowspan="2"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜法務相談No＞</p></div></td>
+        <td class="rightTD" style="border-bottom: 0px;border-right: 0px;width: 20%;">
+          <input id="legalAdviceNum" class="input_alphanumeric col_width08" type="text" placeholder="例）ZACRO-99999999" maxlength='32' style="width: 95%;border: 1px solid #666666;">
+        </td>
+        <td class="rightTD" style="border-bottom: 0px;border-left: 0px;width: 50%;"><label class="label_grey">&nbsp</label></td>
+     </tr>
+     <tr>
+        <td class="leftTD1" style="border-top: 0px;"><input type="button" class="push_btn btn_inner" value="法務相談検索" id="houmuSch01"></td>
+        <td class="rightTD" colspan="2" style="border-top: 0px;">
+         <select class="cb_placeholder col_width10" style="width: 100%;height: 28px;">
+          <option value="" class="op_hide">法務相談していない場合は、その理由を選択してください</option>
+          <option value="-" class="op_normal"></option>
+          <option value="01" class="op_normal">法務が公開している書式をそのまま使用して発注申請するため</option>
+          <option value="01" class="op_normal">過去に法務相談した内容であり、軽微な差異（金額、期間等）であるため</option>
+         </select>
+        </td>
+     </tr>
+    </table>
+    <div style="margin:10px auto 10px;width:50%;">
+      <p>
+        <div>
+        <input type="button" class="push_btn btn_m" value="戻る" onClick="javascript:history.back(-1);" >
+        <button id="saveAllChanges" class="push_btn btn_m">一時保存</button>
+        <input type="button" class="push_btn btn_m" value="次へ" onClick="gotoPage('OrderBasicContentInput.html')" >
+        <input type="button" class="push_btn btn_m" value="発注内容確認画面へ" onClick="gotoPage('OrderContentConfirm.html')" >
+        </div>
+      </p>
+    </div>
+</article>
+<!----- メインコンテンツ END ----->
+
+<!----- ダイアログエリア START ----->
+<div id="dialog_div_keiyakushoSch01" style="display:none;">
+  <input id="basicAgreementNumSch" class="input_alphanumeric" type="text" placeholder="例）BNE-xxxxxxxxxx" maxlength='32'>
+</div>
+<div id="dialog_div_ringiSch01" style="display:none;">
+  <input id="budgetApprovalNumSch" class="input_alphanumeric" type="text" placeholder="例）BNE-RG99999999" maxlength='32'>
+</div>
+<div id="dialog_div_houmuSch01" style="display:none;">
+  <input id="legalAdviceNumSch" class="input_alphanumeric" type="text" placeholder="例）ZACRO-99999999" maxlength='32'>
+</div>
+<!----- ダイアログエリア END ----->
+
+<!----- フッター ----->
+<article style="position: fixed;bottom: 0;width: 100%;">
+  <!-- 先頭へスクロール -->
+　<section>
+  <div id="toTopImg" class="area_foottool" >
+    <p class="btn_goto_top">↑</p>
+  </div>
+　</section>
+  <!-- Copyright表記 -->
+  <section>
+    <footer>Copyright xxxxxxxxxxxxxxxxxxxxxxxxxxx</footer>
+  </section>
+</article>
+<!----- フッター END ----->
+
+</div>
+<!-- <script src="https://code.jquery.com/jquery-1.7.2.min.js" integrity="sha256-R7aNzoy2gFrVs+pNJ6+SokH04ppcEqJ0yFLkNGoFALQ=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.8.21/jquery-ui.min.js" integrity="sha256-DKEv4IPW6aw0MrDgVoDVyPv6DQgU+GG8+Q3uW5utOFM=" crossorigin="anonymous"></script> -->
+<script src="../js/include/jquery-1.12.4.js"></script>
+<script src="../js/include/jquery-3.5.1.min.js"></script>
+<script src="../js/include/jquery-ui-1.12.1.js"></script>
+<script src="../js/include/jquery-ui-1.12.1.min.js"></script>
+<script src="../js/common/common.js"></script>
+<script src="../js/page/OrderPremiseInput.js"></script>
+</body>
+</html>

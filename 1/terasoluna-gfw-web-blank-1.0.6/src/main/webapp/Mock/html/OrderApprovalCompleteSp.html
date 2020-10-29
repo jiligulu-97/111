@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>次期発注管理システム（仮称）</title>
+<meta name="description" content="稟議・申請ワークフロー">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../css/common/main.css">
+<link rel="stylesheet" href="../css/include/jquery-ui-1.12.1.css">
+
+</head>
+<body>
+    <div class="wrapper">
+        <!----- ヘッダー ----->
+        <header>
+            <div class="title_div"><span class="title_word" style="width: 100%;">次期発注管理システム（仮称）</span></div>
+          </header>
+       
+        <h1 style="margin: auto;">発注承認完了</h1>
+
+        <div style="margin: auto;">
+            <p style="font-size: 1.5em; font-weight: bold;">発注承認が完了しました。</p> 
+             <p style="font-size: 1.5em; font-weight: bold;">発注番号：<a href="OrderContentConfirmSp.html"> 9999999999</a></p>   
+                </h2>
+        </div > 
+        <div style="margin: auto;">
+            <input type="button" class="push_btn btn_m" id="order_list" value="発注一覧へ" >
+        </div>
+    </div>
+
+    
+    <script src="../js/include/jquery-1.12.4.js"></script>
+    <script src="../js/include/jquery-3.5.1.min.js"></script>
+    <script src="../js/include/jquery-ui-1.12.1.js"></script>
+    <script src="../js/include/jquery-ui-1.12.1.min.js"></script>
+    <script src="../js/include/jquery.ui.datepicker-ja.js"></script>
+    <script src="../js/common/common.js"></script>
+    <script src="../data/MyOrderListData.js"></script>
+    <script>
+        $("#order_list").click(function(){
+            self.location.href = "OrderListSp.html";
+        });
+    </script>
+    
+</body>
+</html>

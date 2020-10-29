@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>次期発注管理システム（仮称）</title>
+<meta name="description" content="稟議・申請ワークフロー">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../css/common/main.css">
+<link rel="stylesheet" href="../css/include/jquery-ui-1.12.1.css">
+<link rel="stylesheet" href="../css/page/OrderDetailInput.css">
+
+</head>
+<body>
+
+<div class="wrapper">
+<!----- ヘッダー START----->
+<header class="lnk_menu" ><img src="../image/logo_s.png" class="img_logo">次期発注管理システム（仮称）</header>
+<!----- ヘッダー END ----->
+      
+<!----- パンくず ----->
+<div id="features">
+    <div class="feature-row">
+      <div class="feature-col">
+        <img src="../image/image001.png" width=80px>
+        <h4>ガバナンス確認</h4>
+      </div>
+      <div class="feature-col">
+        <img src="../image/image016.png" width=20px>
+      </div>
+      <div class="feature-col">
+        <img src="../image/image002.png" width=80px>
+        <h4>基本内容入力</h4>
+      </div>
+      <div class="feature-col">
+        <img src="../image/image016.png" width=20px>
+      </div>
+      <div class="feature-col">
+        <img src="../image/selected003.png" width=80px>
+        <h4>明細内容入力</h4>
+      </div>
+      <div class="feature-col">
+        <img src="../image/image016.png" width=20px>
+      </div>
+      <div class="feature-col">
+        <img src="../image/image004.png" width=80px>
+        <h4>稟議内容入力</h4>
+      </div>
+      <div class="feature-col">
+        <img src="../image/image016.png" width=20px>
+      </div>
+      <div class="feature-col">
+        <img src="../image/image005.png" width=80px>
+        <h4>承認ルート入力</h4>
+      </div>
+      <div class="feature-col">
+        <img src="../image/image016.png" width=20px>
+      </div>
+      <div class="feature-col">
+        <img src="../image/image006.png">
+        <h4>内容確認</h4>
+      </div>
+      <div class="feature-col">
+        <img src="../image/image016.png" width=20px>
+      </div>
+      <div class="feature-col">
+        <img src="../image/image007.png">
+        <h4>登録完了</h4>
+      </div>
+    </div>
+</div>
+<!----- パンくず END ----->
+ 
+<!----- メインコンテンツ ----->
+<article id="main_win_area" style="height: auto;">
+  <h1 class="hks_title" style="width: 50%;">発注明細内容入力</h1>
+  <div style="margin:10px auto 10px;width:50%;">
+            <p>
+              <div>
+                <input type="button" class="push_btn btn_m" value="戻る" onClick="gotoPage('OrderBasicContentInput.html')" >
+                <input type="button" class="push_btn btn_m" value="一時保存" disabled >
+                <input type="button" class="push_btn btn_m" value="次へ" onClick="gotoPage('ApprovalContentInput.html')" >
+                <input type="button" class="push_btn btn_m" value="発注内容確認画面へ" onClick="gotoPage('OrderContentConfirm.html')" >
+              </div>
+            </p>
+  </div>
+  <table id="tb_order_cond_list4" class="tbl_big tbl_details" style="width: 50%;margin-top: 10px; margin-bottom: 10px;">
+            <tr>
+                <td rowspan="18" class="td1">月額固定費条件<br><input type="button" class="push_btn btn_inner" value="明細に展開" id="showtable" style="font-size: 0.875em;margin: 0px;min-width: 80px;"></td>
+                <td class="td2">期間</td>
+                <td class="td3"></td>
+                <td class="td4"></td>
+                <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜期間＞</p></div></td>
+                <td class="td6">
+                    <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                      <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                    </svg>
+                    ～
+                    <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                      <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                    </svg>
+                </td>
+            </tr>
+            <tr>
+                <td class="td2">インターバル</td>
+                <td class="td3"></td>
+                <td class="td4"></td>
+                <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜インターバル＞</p></div></td>
+                <td class="td6"><input type="text" id="">ヶ月毎</td>
+            </tr>
+            <tr>
+                <td class="td2">支払日</td>
+                <td class="td3"></td>
+                <td class="td4"></td>
+                <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜支払日＞</p></div></td>
+                <td class="td6">
+                    <select class="" >
+                        <option value="00" class="op_normal">20日締め、15日払い</option>
+                        <option value="01" class="op_normal">月末締め、15日払い</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td class="td2">単価</td>
+                <td class="td3"></td>
+                <td class="td4"></td>
+                <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜単価＞</p></div></td>
+                <td class="td6"><input type="text" id=""></td>
+            </tr>
+            <tr>
+                <td rowspan="4" class="td2">発注明細内容</td>
+                <td rowspan="4" class="td3"></td>
+                <td rowspan="4" class="td4"></td>
+                <td rowspan="4" class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注明細内容＞</p></div></td>
+                <td rowspan="4" class="td6"><textarea class="txt_auto_size1 col_width22 txt_group_4" cols="10" rows="4" id="meisai_txt_4"></textarea>残<label class="lavecount_4" id="meisai_lavecount_4">400</label>文字</td>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr>
+                <td rowspan="2" class="td2">納品物・製品明細</td>
+                <td rowspan="2" class="td3"></td>
+                <td rowspan="2" class="td4"></td>
+                <td rowspan="2" class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜納品物・製品明細＞</p></div></td>
+                <td rowspan="2" class="td6"><textarea class="txt_auto_size1 col_width22 txt_group_2" cols="22" rows="2" id="nouhin_txt_2"></textarea>残<label class="lavecount_2" id="nouhin_lavecount_2">200</label>文字</td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td class="td2">原価センタ</td>
+                <td class="td3"></td>
+                <td class="td4"></td>
+                <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜原価センタ＞</p></div></td>
+                <td class="td6"><input type="text" id="" placeholder="コードの一部を入力すると候補を表示します">&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="" placeholder="名前の一部を入力すると候補を表示します"></td>
+            </tr>
+            <tr>
+                <td class="td2">WBS<br><input type="button" class="push_btn btn_inner btn_wbs" value="WBS検索" style="font-size: 0.875em;"></td>
+                <td rowspan="2" class="td3"></td>
+                <td rowspan="2" class="td4"></td>
+                <td rowspan="2" class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜WBS＞</p></div></td>
+                <td class="td6"><input type="text" id="wbs_earch_result1" placeholder="コードの一部を入力すると候補を表示します">&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="wbs_earch_result2" placeholder="名前の一部を入力すると候補を表示します"></td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td class="td2">摘要</td>
+                <td class="td3"></td>
+                <td class="td4"></td>
+                <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜摘要＞</p></div></td>
+                <td class="td6"><input type="text" id="" placeholder="コードの一部を入力すると候補を表示します">&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="" placeholder="名前の一部を入力すると候補を表示します"></td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="td2">備考</td>
+                <td rowspan="2" class="td3"></td>
+                <td rowspan="2" class="td4"></td>
+                <td rowspan="2" class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜備考＞</p></div></td>
+                <td rowspan="2" class="td6"><textarea class="txt_auto_size1 col_width22 txt_group_2" cols="22" rows="2" id="bikou_txt_2"></textarea>残<label class="lavecount_2" id="bikou_lavecount_2">200</label>文字</td>
+            </tr>
+            <tr></tr>
+  </table>
+  <div>
+    <div id="table_details">
+    <table id="tb_order_cond_list6" style="width: 50%;margin-top: 10px; margin-bottom: 10px;">
+        <tr>
+            <td class="td1" rowspan="11"><span id="tbl_details_num">明細1</span><br>
+              <input type="button" class="push_btn btn_inner" value="追加" id="append_table" style="font-size: 0.875em;"><br>
+              <input type="button" class="push_btn btn_inner" value="コピー" id="copy_table" style="font-size: 0.875em;"><br>
+              <input type="button" class="push_btn btn_inner" value="削除" id="remove_table" style="font-size: 0.875em;">
+            </td>
+            <td class="td2">発注明細内容</td>
+            <td class="td3"><img src="../image/png1.png" class="img_logo" id=""></td>
+            <td class="td4"><label id="label_must"> ＊</label></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注明細内容＞</p></div></td>
+            <td class="td6" colspan="6"><textarea class="txt_auto_size1 col_width22" id="txt_details"></textarea>残<label id="meisai1_meisai_lavecount_4">400</label>文字</td>
+        </tr>
+        <tr>
+            <td class="td2">納品物・製品明細</td>
+            <td class="td3"><img src="../image/png1.png" class="img_logo" id=""></td>
+            <td class="td4"></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜納品物・製品明細＞</p></div></td>
+            <td class="td6" colspan="6"><textarea class="txt_auto_size1 col_width22" id="txt_nouhin"></textarea>残<label id="meisai1_nouhin_lavecoun_2">200</label>文字</td>
+        </tr>
+        <tr>
+            <td class="td2">発注数量</td>
+            <td class="td3"><img src="../image/png1.png" class="img_logo" id=""></td>
+            <td class="td4"><label id="label_must"> ＊</label></td></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注数量＞</p></div></td>
+            <td class="td66"><input type="text" id=""> </td>
+            <td class="td2">単価</td>
+            <td class="td3"><img src="../image/png1.png" class="img_logo" id=""></td>
+            <td class="td4"><label id="label_must"> ＊</label></td></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜単価＞</p></div></td>
+            <td class="td66"><input type="text" id=""> </td>
+        </tr>
+        <tr>
+            <td class="td2">合計金額</td>
+            <td class="td3"><img src="../image/png1.png" class="img_logo" id=""></td>
+            <td class="td4"></td></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜合計金額＞</p></div></td>
+            <td class="td66"><input type="text" id=""> </td>
+            <td class="td2">通貨</td>
+            <td class="td3"></td>
+            <td class="td4"></td></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜通貨＞</p></div></td>
+            <td class="td66"><label class="default_write">JPY:日本円</label></td>
+        </tr>
+        <tr>
+            <td class="td2">税込金額</td>
+            <td class="td3"></td>
+            <td class="td4"></td></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜税込金額＞</p></div></td>
+            <td class="td66"><input type="text" id=""> </td>
+            <td class="td2">消費税区分</td>
+            <td class="td3"></td>
+            <td class="td4"><label id="label_must"> ＊</label></td></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜消費税区分＞</p></div></td>
+            <td class="td66">
+                <select class="cb_placeholder col_width10" >
+                    <option value="" class="op_hide">選択してください</option>
+                    <option value="00" class="op_normal">外税8%</option>
+                    <option value="01" class="op_normal">内税8%</option>
+                    <option value="02" class="op_normal">輸入</option>
+                    <option value="03" class="op_normal">リバースチャージ</option>
+                    <option value="04" class="op_normal">外税10%</option>
+                    <option value="05" class="op_normal">内税10%</option>
+                    <option value="06" class="op_normal">外税(軽減)8%</option>
+                    <option value="07" class="op_normal">内税(軽減)8%</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="td2">納入期日</td>
+            <td class="td3"><img src="../image/png1.png" class="img_logo" id=""></td>
+            <td class="td4"><label id="label_must"> ＊</label></td></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜納入期日＞</p></div></td>
+            <td class="td66"> <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                    <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                </svg>
+            </td>
+            <td class="td2">検収予定日</td>
+            <td class="td3"><img src="../image/png1.png" class="img_logo" id=""></td>
+            <td class="td4"><label id="label_must"> ＊</label></td></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜検収予定日＞</p></div></td>
+            <td class="td66"> <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                    <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                </svg>
+            </td>
+        </tr>
+        <tr>
+            <td class="td2">支払日</td>
+            <td class="td3"><img src="../image/png1.png" class="img_logo" id=""></td>
+            <td class="td4"></td></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜支払日＞</p></div></td>
+            <td class="td66"> <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                </svg>
+            </td>
+            <td class="td2">サービス開始予定日</td>
+            <td class="td3"><img src="../image/png1.png" class="img_logo" id=""></td>
+            <td class="td4"></td></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜サービス開始予定日＞</p></div></td>
+            <td class="td66"> <input type="text" class="ctl_calendar" readonly value="" placeholder="例）2099/12/31">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                </svg>
+            </td>
+        </tr>
+        <tr>
+            <td class="td2">原価センタ</td>
+            <td class="td3"></td>
+            <td class="td4"></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜原価センタ＞</p></div></td>
+            <td class="td6" colspan="6"><input type="text" id="" placeholder="コードの一部を入力すると候補を表示します">&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="" placeholder="名前の一部を入力すると候補を表示します"></td>
+        </tr>
+        <tr>
+            <td class="td2">WBS<br><input type="button" class="push_btn btn_inner btn_wbs" value="WBS検索"></td>
+            <td class="td3"></td>
+            <td class="td4"></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜WBS＞</p></div></td>
+            <td class="td6" colspan="6"><input type="text" id="" placeholder="コードの一部を入力すると候補を表示します">&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="" placeholder="名前の一部を入力すると候補を表示します"></td>
+        </tr>
+        <tr>
+            <td class="td2">摘要</td>
+            <td class="td3"></td>
+            <td class="td4"></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜摘要＞</p></div></td>
+            <td class="td6" colspan="6"><input type="text" id="" placeholder="コードの一部を入力すると候補を表示します">&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="" placeholder="名前の一部を入力すると候補を表示します"></td>
+        </tr>
+        <tr>
+            <td class="td2">備考</td>
+            <td class="td3"></td>
+            <td class="td4"></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜備考＞</p></div></td>
+            <td class="td6" colspan="6"><textarea class="txt_auto_size1 col_width22" cols="22" rows="2" id="txt_bikou"></textarea>残<label class="last_font200" id="meisai1_bihou_lavecount_2">200</label>文字</td>
+        </tr>
+    </table>
+</div>
+<div id="add2copr"></div>
+<div id="goukei_jpy">
+    <table id="tb_order_cond_list7" style="width: 50%;margin-top: 10px; margin-bottom: 10px;">
+        <tr>
+            <td rowspan="2" class="td1">合計</td>
+            <td class="td2">合計金額</td>
+            <td class="td3"><img src="../image/png1.png" class="img_logo" id=""></td>
+            <td class="td4"></td></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜合計金額＞</p></div></td>
+            <td class="td66"><label class="goukei_1">&nbsp;</label></td>
+            <td class="td2">税込</td>
+            <td class="td3"></td>
+            <td class="td4"></td></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜税込＞</p></div></td>
+            <td class="td66"><label class="goukei_1">&nbsp;</label></td>
+        </tr>
+        <tr>
+            <td colspan="4" class="td7"><label class="goukei_1">JPY:日本円</label></td>
+            <td colspan="6" class="td8"><label class="goukei_2">源泉税タイプ：原稿／著作権料</label></td>
+        </tr>
+    </table>
+</div>
+
+<div id="goukei_usd">
+    <table id="tb_order_cond_list8">
+        <tr>
+            <td rowspan="4" class="td1">合計</td>
+            <td class="td2">合計金額</td>
+            <td class="td3"></td>
+            <td class="td4"></td></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜合計金額＞</p></div></td>
+            <td class="td66"><label class="goukei_1">&nbsp;</label></td>
+            <td class="td2">税込</td>
+            <td class="td3"></td>
+            <td class="td4"></td></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜税込＞</p></div></td>
+            <td class="td66"><label class="goukei_1">&nbsp;</label></td>
+        </tr>
+        <tr>
+            <td colspan="4" class="td7"><label class="goukei_1">USD:米ドル</label></td>
+            <td colspan="6" class="td8"><label class="goukei_2">源泉税タイプ：原稿／著作権料</label></td>
+        </tr>
+        <tr>
+            <td class="td2">合計金額</td>
+            <td class="td3"></td>
+            <td class="td4"></td></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜合計金額＞</p></div></td>
+            <td class="td66"><label class="goukei_1">&nbsp;</label></td>
+            <td class="td2">税込</td>
+            <td class="td3"></td>
+            <td class="td4"></td></td>
+            <td class="td5"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜税込＞</p></div></td>
+            <td class="td66"><label class="goukei_1">&nbsp;</label></td>
+        </tr>
+        <tr>
+            <td colspan="4" class="td7"><label class="goukei_1">JPY:日本円</label></td>
+            <td colspan="6" class="td8"><label class="goukei_2">為替レート:110.0</label></td>
+        </tr>
+    </table>
+</div>
+  </div>
+  <div style="margin:10px auto 10px;width:50%;margin-top: 10px; margin-bottom: 10px;">
+    <p>
+      <div>
+        <input type="button" class="push_btn btn_m" value="戻る" onClick="gotoPage('OrderBasicContentInput.html')" >
+        <input type="button" class="push_btn btn_m" value="一時保存" disabled >
+        <input type="button" class="push_btn btn_m" value="次へ" onClick="gotoPage('ApprovalContentInput.html')" >
+        <input type="button" class="push_btn btn_m" value="発注内容確認画面へ" onClick="gotoPage('OrderContentConfirm.html')" >
+      </div>
+    </p>
+  </div>
+</article>
+<!----- メインコンテンツ END ----->
+<!----- ダイアログエリア START ----->
+<div id="dialog_window_div"></div>
+<!----- ダイアログエリア END ----->
+<!----- 吹き出しSTART ----->
+<div id="balloon_message">
+  <p></p>
+</div>
+<!----- 吹き出しEND ----->
+<!----- フッター ----->
+<article style="position: fixed;bottom: 0;width: 100%;">
+    <!-- 先頭へスクロール -->
+  　<section>
+    <div id="toTopImg" class="area_foottool" >
+      <p class="btn_goto_top">↑</p>
+    </div>
+  　</section>
+    <!-- Copyright表記 -->
+    <section>
+      <footer>Copyright xxxxxxxxxxxxxxxxxxxxxxxxxxx</footer>
+    </section>
+</article>
+<!----- フッター END ----->
+</div>
+
+<script src="../js/common/common.js"></script>
+<script src="../js/include/jquery-1.12.4.js"></script>
+<script src="../js/include/jquery-3.5.1.min.js"></script>
+<script src="../js/include/jquery-ui-1.12.1.js"></script>
+<script src="../js/include/jquery-ui-1.12.1.min.js"></script>
+<script src="../js/include/jquery.ui.datepicker-ja.js"></script>
+<script src="../js/page/OrderDetailInput.js"></script>
+<script src="../data/MyOrderListData.js"></script>
+</body>
+</html>

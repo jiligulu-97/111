@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>次期発注管理システム（仮称）</title>
+<meta name="description" content="稟議・申請ワークフロー">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"  href="../css/include/jquery-ui-1.12.1.css">
+<link rel="stylesheet"  href="../css/common/main.css">
+</head>
+<body>
+<div class="wrapper">
+
+<!----- (PC)受入内容確認画面 ----->
+
+<!----- ヘッダー START----->
+<header class="lnk_menu" ><img src="../image/logo_s.png" class="img_logo">次期発注管理システム（仮称）</header>
+<!----- ヘッダー END ----->
+
+<!----- パンくず ----->
+<div id="features">
+  <div class="feature-row">
+    <div class="feature-col">
+      <img src="../image/image001.png" width=80px>
+      <h4>基本内容入力</h4>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image016.png" width=20px>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image002.png" width=80px>
+      <h4>明細内容入力</h4>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image016.png" width=20px>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image003.png" width=80px>
+      <h4>承認ルート入力</h4>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image016.png" width=20px>
+    </div>
+    <div class="feature-col">
+      <img src="../image/selected004.png" width=80px>
+      <h4>内容確認</h4>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image016.png" width=20px>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image005.png" width=80px>
+      <h4>登録完了</h4>
+    </div>
+  </div>
+</div>
+<!----- パンくず END ----->
+
+<!----- メインコンテンツ ----->
+<article id="main_win_area" style="height: auto;">
+      <h1 class="hks_title" >受入内容確認</h1>
+      <div style="margin:10px auto 10px;width:50%;display:flex;align-items: center;">
+        <p>
+          <div>
+          <input type="button" class="push_btn btn_m" value="戻る" onClick="javascript:history.back(-1);" >
+          <button id="saveAllChanges" class="push_btn btn_m">一時保存</button>
+          <input type="button" class="push_btn btn_m" value="受入登録" onClick="gotoPage('AcceptanceRegistrationComplete.html')" >
+          <input type="button" class="push_btn btn_m" value="修正" onClick="gotoPage('AcceptanceBasicContentInput.html')" >
+          </div>
+          <div style="flex: 1;text-align: right;">
+          <input type="button" class="push_btn btn_m" value="検査結果通知書プレビュー" style="flex: 1;text-align: right;" onClick="gotoPage('InspectionResultNotificationPreview.html')">
+          </div>
+        </p>
+      </div>
+      <div>
+      <div style="margin:10px auto 10px;width:50%;height:50px;background-color: #9dc2e8;display:flex;align-items: center;">
+        <div>
+          <p style="margin-left: 20px;font-weight: bolder;">受入基本内容</p>
+        </div>
+        <div style="flex: 1;text-align: right;">
+          <input type="button" value="修正" style="border: none;width: 60px;height: 40px;background-color: #2f5893;color: #FFF;font-weight: bold;" onClick="gotoPage('AcceptanceBasicContentInput.html')">
+        </div>
+        <div style="padding-left: 5px;padding-right: 5px;">
+          <input id="AcceptBasicBtn" type="button" value="-" style="border: none;width: 40px;height: 40px;background-color: #2f5893;color: #FFF;font-weight: bold;font-size: 25px;">
+        </div>
+      </div>
+      <div id="AcceptBasic">
+      <table class="tbl_table">
+        <tr>
+            <td class="leftTD1" colspan="4" style="width: 25%;">申請区分</td>
+            <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜申請区分＞</p></div></td>
+            <td class="rightTD" colspan="2">
+              <input type="text" readonly class="input_basicTXT">
+            </td>
+        </tr>
+        <tr>
+            <td></br></td>
+        </tr>
+        <tr>
+            <td class="leftTD1" colspan="4">受入番号</td>
+            <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜受入番号＞</p></div></td>
+            <td class="rightTD" colspan="2">
+              <input id="acceptanceNumber" type="text" readonly class="input_basicTXT">
+            </td>
+        </tr>
+        <tr>
+            <td class="leftTD1" colspan="4">起案者</td>
+            <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜起案者＞</p></div></td>
+            <td class="rightTD" colspan="2">
+              <input type="text" readonly class="input_basicTXT">
+            </td>
+        </tr>
+        <tr>
+            <td class="leftTD1" colspan="3">起案部署</td>
+            <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+            <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜起案部署＞</p></div></td>
+            <td class="rightTD" colspan="2">
+              <input type="text" readonly class="input_basicTXT">
+            </td>
+        </tr>
+        <tr>
+            <td class="leftTD1" colspan="3">件名</td>
+            <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+            <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜件名＞</p></div></td>
+            <td class="rightTD" colspan="2">
+              <input type="text" readonly class="input_basicTXT">
+            </td>
+        </tr>
+        <tr>
+          <td class="leftTD1" rowspan="5" style="width: 10%;">発注情報</td>
+          <td class="leftTD3" rowspan="5" style="width: 5%;"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注情報＞</p></div></td>
+          <td class="leftTD1" colspan="3" style="border-right: 1px solid #999999;width: 15%;">発注番号</td>
+          <td class="rightTD" colspan="2">
+            <input type="text" readonly class="input_basicTXT">
+          </td>
+        </tr>
+        <tr>
+            <td class="leftTD1" colspan="3" style="border-right: 1px solid #999999;">件名</td>
+            <td class="rightTD" colspan="2">
+              <input type="text" readonly class="input_basicTXT">
+            </td>
+        </tr>
+        <tr>
+            <td class="leftTD1" colspan="3" style="border-right: 1px solid #999999;">発注タイプ</td>
+            <td class="rightTD" colspan="2">
+              <input id="orderType" type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+            <td class="leftTD1" colspan="3" style="border-right: 1px solid #999999;">発注担当者</td>
+            <td class="rightTD" colspan="2">
+              <input id="orderResponser" type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+            <td class="leftTD1" colspan="3" style="border-right: 1px solid #999999;">発注担当部署</td>
+            <td class="rightTD" colspan="2">
+              <input id="orderResponseDepartment" type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="leftTD1" rowspan="5">仕入先</td>
+            <td class="leftTD3" rowspan="5" ><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜仕入先＞</p></div></td>
+            <td class="leftTD1" colspan="3" style="border-right: 1px solid #999999;">仕入先名</td>
+            <td class="rightTD" colspan="2">
+              <input type="text" readonly class="input_basicTXT">
+            </td>
+          </tr>
+          <tr>
+              <td class="leftTD1" colspan="3" style="border-right: 1px solid #999999;">支払条件</td>
+              <td class="rightTD" colspan="2">
+                <input type="text" readonly class="input_basicTXT">
+              </td>
+          </tr>
+          <tr>
+              <td class="leftTD1" colspan="3" style="border-right: 1px solid #999999;">銀行名</td>
+              <td class="rightTD" colspan="2">
+                <input type="text" readonly class="input_basicTXT">
+              </td>
+          </tr>
+          <tr>
+              <td class="leftTD1" colspan="3" style="border-right: 1px solid #999999;">銀行口座</td>
+              <td class="rightTD" colspan="2">
+                <input type="text" readonly class="input_basicTXT">
+              </td>
+          </tr>
+          <tr>
+            <td class="leftTD1" colspan="3" style="border-right: 1px solid #999999;">手数料負担</td>
+            <td class="rightTD" colspan="2">
+              <input type="text" readonly class="input_basicTXT">
+            </td>
+        </tr>
+        <tr>
+          <td class="leftTD1" rowspan="2">通貨・税関連</td>
+            <td class="leftTD3" rowspan="2" ><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜通貨・税関連＞</p></div></td>
+            <td class="leftTD1" colspan="3" style="border-right: 1px solid #999999;">通貨</td>
+            <td class="rightTD" colspan="2">
+              <input type="text" readonly class="input_basicTXT">
+            </td>
+        </tr>
+        <tr>
+              <td class="leftTD1" colspan="3" style="border-right: 1px solid #999999;">源泉税</td>
+              <td class="rightTD" colspan="2">
+                <input type="text" readonly class="input_basicTXT">
+              </td>
+        </tr>
+        <tr>
+          <td class="leftTD1" rowspan="3">基本契約</td>
+            <td class="leftTD3" rowspan="3" ><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜基本契約＞</p></div></td>
+            <td class="leftTD1" colspan="3" style="border-right: 1px solid #999999;">契約番号</td>
+            <td class="rightTD" colspan="2">
+              <input type="text" readonly class="input_basicTXT" style="color: #14b4f3;text-decoration: none;">
+            </td>
+        </tr>
+        <tr>
+            <td class="leftTD1" colspan="3" style="border-right: 1px solid #999999;">契約書名</td>
+            <td class="rightTD" colspan="2">
+              <input type="text" readonly class="input_basicTXT">
+            </td>
+          </tr>
+          <tr>
+              <td class="leftTD1" colspan="3" style="border-right: 1px solid #999999;">契約締結日</td>
+              <td class="rightTD" colspan="2">
+                <input type="text" readonly class="input_basicTXT">
+              </td>
+        </tr>
+        <tr>
+            <td class="leftTD1" colspan="4">個別稟議番号</td>
+            <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜個別稟議番号＞</p></div></td>
+            <td class="rightTD" colspan="2">
+              <input type="text" readonly class="input_basicTXT" style="color: #14b4f3;text-decoration: none;">
+            </td>
+        </tr>
+        <tr>
+            <td class="leftTD1" colspan="3">納品日</td>
+            <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+            <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜納品日＞</p></div></td>
+            <td class="rightTD" colspan="2">
+              <input type="text" readonly class="input_basicTXT">
+            </td>
+        </tr>
+        <tr>
+            <td class="leftTD1" colspan="3">検査完了日</td>
+            <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+            <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜検査完了日＞</p></div></td>
+            <td class="rightTD" colspan="2">
+              <input type="text" readonly class="input_basicTXT">
+            </td>
+        </tr>
+        <tr>
+            <td class="leftTD1" colspan="3">転記日</td>
+            <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+            <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜転記日＞</p></div></td>
+            <td class="rightTD" colspan="2">
+              <input type="text" readonly class="input_basicTXT">
+            </td>
+        </tr>
+        <tr>
+            <td class="leftTD1" colspan="3">支払日</td>
+            <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+            <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜支払日＞</p></div></td>
+            <td class="rightTD" colspan="2">
+              <input type="text" readonly class="input_basicTXT">
+            </td>
+        </tr>
+        <tr>
+            <td class="leftTD1" colspan="4">添付ファイル</td>
+            <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜個別稟議番号＞</p></div></td>
+            <td class="rightTD1" style="width: 25%;">
+              <input type="text" readonly class="input_basicTXT" style="color: #14b4f3;text-decoration: none;" value="○○○○○.pdf"></br>
+              <input type="text" readonly class="input_basicTXT" style="color: #14b4f3;text-decoration: none;" value="△△△△△.pdf"></br>
+              <input type="text" readonly class="input_basicTXT" style="color: #14b4f3;text-decoration: none;" value="□□□□□.pdf">
+            </td>
+            <td class="rightTD2" style="width: 45%;">
+              <input type="text" readonly class="input_basicTXT" value="添付ファイルコメント1"></br>
+              <input type="text" readonly class="input_basicTXT" value="添付ファイルコメント2"></br>
+              <input type="text" readonly class="input_basicTXT" value="添付ファイルコメント3">
+            </td>
+        </tr>
+      </table>
+      </div>
+      </div>
+      <div>
+      <div style="margin:10px auto 10px;width:50%;height:50px;background-color: #9dc2e8;display:flex;align-items: center;">
+        <div>
+          <p style="margin-left: 20px;font-weight: bolder;" >受入明細内容</p>
+        </div>
+        <div style="flex: 1;text-align: right;">
+          <input type="button" value="修正" style="border: none;width: 60px;height: 40px;background-color: #2f5893;color: #FFF;font-weight: bold;" onClick="gotoPage('AcceptanceDetailInput.html')">
+        </div>
+        <div style="padding-left: 5px;padding-right: 5px;">
+          <input id="AcceptDetailBtn" type="button" value="-" style="border: none;width: 40px;height: 40px;background-color: #2f5893;color: #FFF;font-weight: bold;font-size: 25px;">
+        </div>
+      </div>
+      <div id="AcceptDetail">
+      <table class="tbl_table">
+        <tr>
+          <td class="leftTD1" rowspan="9" style="border-right: 1px solid #999999;width: 8%;">明細2</td>
+          <td class="leftTD1" colspan="2">発注明細内容</td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注明細内容＞</p></div></td>
+          <td class="rightTD" colspan="4">
+            <input type="text" readonly class="input_basicTXT" value="2/2_PS4/Xone/Steam/NSW/WEGAME&#10;「○○○○○○○ ○○○○○○」2020年度最終本制作開発および業務委託">
+          </td>
+        </tr>
+        <tr>
+          <td class="leftTD1" colspan="2">納品物・製品明細</td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜納品物・製品明細＞</p></div></td>
+          <td class="rightTD" colspan="4">
+            <input type="text" readonly class="input_basicTXT" value="2/2_「本製品」に係る無料アップデートデータ第○弾の開発業務&#10;「本製品」に係る無料アップデートデータ第○弾のキャラクター仕様書">
+          </td>
+        </tr>
+        <tr>
+          <td class="leftTD1" colspan="2">発注数量</td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注数量＞</p></div></td>
+          <td class="rightTD" style="width: 25%;"><input type="text" readonly class="input_basicTXT"></td>
+          <td class="leftTD1">単価</td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜単価＞</p></div></td>
+          <td class="rightTD" style="width: 25%;"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="leftTD1" colspan="2">合計金額</td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜合計金額＞</p></div></td>
+          <td class="rightTD" style="width: 25%;"><input type="text" readonly class="input_basicTXT"></td>
+          <td class="leftTD1">消費税区分</td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜消費税区分＞</p></div></td>
+          <td class="rightTD" style="width: 25%;"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="leftTD1">受入数量</td>
+          <td class="leftTD2"><label style="color:red;float: right;padding-right: 10px;">*</label></td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜受入数量＞</p></div></td>
+          <td class="rightTD" colspan="4"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="leftTD1" colspan="2">受入金額（税抜）</td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜受入金額（税抜）＞</p></div></td>
+          <td class="rightTD" style="width: 25%;"><input type="text" readonly class="input_basicTXT"></td>
+          <td class="leftTD1">受入金額（税込）</td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜受入金額（税込）＞</p></div></td>
+          <td class="rightTD" style="width: 25%;"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="leftTD1">原価センタ</td>
+          <td class="leftTD2"><label style="color:red;float: right;padding-right: 10px;">*</label></td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜原価センタ＞</p></div></td>
+          <td class="rightTD1" style="width: 25%;"><input type="text" readonly class="input_basicTXT"></td>
+          <td class="rightTD2" style="width: 45%;" colspan="3"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="leftTD1" colspan="2">WBS</td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜WBS＞</p></div></td>
+          <td class="rightTD1" style="width: 25%;"><input type="text" readonly class="input_basicTXT"></td>
+          <td class="rightTD2" style="width: 45%;" colspan="3"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="leftTD1">摘要</td>
+          <td class="leftTD2"><label style="color:red;float: right;padding-right: 10px;">*</label></td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜摘要＞</p></div></td>
+          <td class="rightTD1" style="width: 25%;"><input type="text" readonly class="input_basicTXT"></td>
+          <td class="rightTD2" style="width: 45%;" colspan="3"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+      </table>
+      </br>
+      <table class="tbl_table">
+        <tr>
+          <td class="leftTD1" rowspan="2" style="border-right: 1px solid #999999;width: 8%;"> 合計</td>
+          <td class="leftTD1" colspan="2">合計金額</td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜合計金額＞</p></div></td>
+          <td class="rightTD" style="width: 25%;"><input type="text" readonly class="input_basicTXT"></td>
+          <td class="leftTD1">税込</td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜税込＞</p></div></td>
+          <td class="rightTD" style="width: 25%;"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="leftTD1" colspan="3" style="border-right: 0px;background-color: #FFF;"><input type="text" readonly class="input_basicTXT" value="※JPY：日本円"></td>
+          <td class="rightTD1" style="width: 45%;border-left: 0px;padding-left: 2px;" colspan="3"><input type="text" readonly class="input_basicTXT" value="※源泉税タイプ：－"></td>
+          <td class="rightTD2" style="width: 25%;"><input type="text" readonly class="input_basicTXT" value="入力部門：－"></td>
+        </tr>
+      </table>
+      </br>
+      <table class="tbl_table">
+        <tr>
+          <td class="leftTD1" rowspan="7" style="border-right: 1px solid #999999;width: 8%;">検査結果通知書</td>
+          <td class="leftTD1">出力有無</td>
+          <td class="leftTD2"><label style="color:red;float: right;padding-right: 10px;">*</label></td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜出力有無＞</p></div></td>
+          <td class="rightTD"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="leftTD1">検査結果</td>
+          <td class="leftTD2"><label style="color:red;float: right;padding-right: 10px;">*</label></td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜検査結果＞</p></div></td>
+          <td class="rightTD"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="leftTD1" colspan="2">個別契約締結日</td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜個別契約締結日＞</p></div></td>
+          <td class="rightTD"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="leftTD1" colspan="2">取引先部署名 担当者</td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜取引先部署名 担当者＞</p></div></td>
+          <td class="rightTD"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="leftTD1">検査結果</td>
+          <td class="leftTD2"><label style="color:red;float: right;padding-right: 10px;">*</label></td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜検査結果＞</p></div></td>
+          <td class="rightTD" colspan="4"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="leftTD1">納入物</td>
+          <td class="leftTD2"><label style="color:red;float: right;padding-right: 10px;">*</label></td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜納入物＞</p></div></td>
+          <td class="rightTD"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="leftTD1" colspan="2">備考</td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜備考＞</p></div></td>
+          <td class="rightTD"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+      </table>
+      </div>
+    </div>
+    <div>
+      <div style="margin:10px auto 10px;width:50%;height:50px;background-color: #9dc2e8;display:flex;align-items: center;">
+        <div>
+          <p style="margin-left: 20px;font-weight: bolder;" >受入承認ルート</p>
+        </div>
+        <div style="flex: 1;text-align: right;">
+          <input type="button" value="修正" style="border: none;width: 60px;height: 40px;background-color: #2f5893;color: #FFF;font-weight: bold;" onClick="gotoPage('AcceptanceApprovalRouteInput.html')">
+        </div>
+        <div style="padding-left: 5px;padding-right: 5px;">
+          <input id="AcceptRouteBtn" type="button" value="-" style="border: none;width: 40px;height: 40px;background-color: #2f5893;color: #FFF;font-weight: bold;font-size: 25px;">
+        </div>
+      </div>
+      <div id="AcceptRoute">
+      <table class="tbl_table" >
+        <tr>
+          <td class="leftTD1" colspan="2" rowspan="2">起案者</td>
+          <td class="leftTD3" rowspan="2"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜起案者＞</p></div></td>
+          <td class="rightTD" colspan="4" style="border-bottom: 0px;"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="rightTD1" style="width: 25%;border-top: 0px;"><input type="text" readonly class="input_basicTXT"></td>
+          <td class="rightTD2" colspan="3" style="width: 45%;border-top: 0px;"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="leftTD1" colspan="2" rowspan="2">受入承認者1</td>
+          <td class="leftTD3" rowspan="2"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜受入承認者1＞</p></div></td>
+          <td class="rightTD" colspan="4" style="border-bottom: 0px;"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="rightTD1" style="width: 25%;border-top: 0px;"><input type="text" readonly class="input_basicTXT"></td>
+          <td class="rightTD2" colspan="3" style="width: 45%;border-top: 0px;"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="leftTD1" colspan="2" rowspan="2">受入承認者2</td>
+          <td class="leftTD3" rowspan="2"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜受入承認者2＞</p></div></td>
+          <td class="rightTD" colspan="4" style="border-bottom: 0px;"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="rightTD1" style="width: 25%;border-top: 0px;"><input type="text" readonly class="input_basicTXT"></td>
+          <td class="rightTD2" colspan="3" style="width: 45%;border-top: 0px;"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="leftTD1" rowspan="2">受入最終承認者</td>
+          <td class="leftTD2" rowspan="2"><label style="color:red;float: right;">*</label></td>
+          <td class="leftTD3" rowspan="2"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜受入最終承認者＞</p></div></td>
+          <td class="rightTD" colspan="4" style="border-bottom: 0px;"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="rightTD1" style="width: 25%;border-top: 0px;"><input type="text" readonly class="input_basicTXT"></td>
+          <td class="rightTD2" colspan="3" style="width: 45%;border-top: 0px;"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="leftTD1" rowspan="2">計上承認者</td>
+          <td class="leftTD2" rowspan="2"><label style="color:red;float: right;">*</label></td>
+          <td class="leftTD3" rowspan="2"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜計上承認者＞</p></div></td>
+          <td class="rightTD" colspan="4" style="border-bottom: 0px;"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="rightTD1" style="width: 25%;border-top: 0px;"><input type="text" readonly class="input_basicTXT"></td>
+          <td class="rightTD2" colspan="3" style="width: 45%;border-top: 0px;"><input type="text" readonly class="input_basicTXT"></td>
+        </tr>
+        <tr>
+          <td class="leftTD1" colspan="2">通知者</td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜通知者＞</p></div></td>
+          <td class="rightTD1" colspan="2">
+            <input type="text" readonly class="input_basicTXT" value="通知者1（XXXXX）"></br>
+            <input type="text" readonly class="input_basicTXT" value="通知者3（XXXXX）"></br>
+            <input type="text" readonly class="input_basicTXT" value="通知者4（XXXXX）"></br>
+            <input type="text" readonly class="input_basicTXT" value="通知者5（XXXXX）"></br>
+            <input type="text" readonly class="input_basicTXT" value="通知者6（XXXXX）">
+          </td>
+          <td class="rightTD2" colspan="2">
+            <input type="text" readonly class="input_basicTXT" value="通知者2（XXXXX）"></br>
+            <input type="text" readonly class="input_basicTXT" value="通知グループ1"></br>
+            <input type="text" readonly class="input_basicTXT" value="通知グループ2"></br>
+            <input type="text" readonly class="input_basicTXT" value="通知グループ3"></br>
+            <input type="text" readonly class="input_basicTXT" value="通知者7（XXXXX）">
+          </td>
+        </tr>
+      </table>
+      </div>
+    </div>
+    <div>
+      </br>
+      <table class="tbl_table" >
+        <tr>
+          <td class="leftTD1" colspan="2">コメント</td>
+          <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜コメント＞</p></div></td>
+          <td class="rightTD">
+            <textarea cols="10" rows="4" style="width:85%;" id="comment" maxlength="140"></textarea>
+            残<label class="lavecount_4" id="comment_lavecount">140</label>文字
+          </td>
+        </tr>
+      </table>
+    </div>
+      <div style="margin:10px auto 10px;width:50%;display:flex;align-items: center;">
+        <p>
+          <div>
+          <input type="button" class="push_btn btn_m" value="戻る" onClick="javascript:history.back(-1);" >
+          <button id="saveAllChanges" class="push_btn btn_m">一時保存</button>
+          <input type="button" class="push_btn btn_m" value="受入登録" onClick="gotoPage('AcceptanceRegistrationComplete.html')" >
+          <input type="button" class="push_btn btn_m" value="修正" onClick="gotoPage('AcceptanceBasicContentInput.html')">
+          </div>
+          <div style="flex: 1;text-align: right;">
+          <input type="button" class="push_btn btn_m" value="検査結果通知書プレビュー" style="flex: 1;text-align: right;" onClick="gotoPage('InspectionResultNotificationPreview.html')">
+          </div>
+        </p>
+      </div>
+</article>
+<!----- メインコンテンツ END ----->
+
+<!----- フッター ----->
+<article style="position: fixed;bottom: 0;width: 100%;">
+    <!-- 先頭へスクロール -->
+  　<section>
+    <div id="toTopImg" class="area_foottool" >
+      <p class="btn_goto_top">↑</p>
+    </div>
+  　</section>
+    <!-- Copyright表記 -->
+    <section>
+      <footer>Copyright xxxxxxxxxxxxxxxxxxxxxxxxxxx</footer>
+    </section>
+</article>
+<!----- フッター END ----->
+  
+</div>
+<script src="../js/include/jquery-1.12.4.js"></script>
+<script src="../js/include/jquery-3.5.1.min.js"></script>
+<script src="../js/include/jquery-ui-1.12.1.js"></script>
+<script src="../js/include/jquery-ui-1.12.1.min.js"></script>
+<script src="../js/common/common.js"></script>
+<script src="../js/page//OrderBasicContentInput.js"></script>
+<script src="../js/page//AcceptanceContentConfirm.js"></script>
+<script>
+    $("#comment").bind("input propertychange", function(){
+      var lengthA=140-$(this).val().length;
+      if(lengthA<0){
+        lengthA=0;
+      };
+      $("#comment_lavecount").text(lengthA);
+    });
+</script>
+<script>
+    $("#AcceptBasicBtn").click(function() {
+      var btnplusminus=$(this).val();
+        if( btnplusminus=="-" ){
+          $(this).val("+");
+          $("#AcceptBasic").slideUp( "slow" );
+        } else {
+          if( btnplusminus=="+" ){
+            $(this).val("-");
+            $("#AcceptBasic").slideDown( "slow" );
+          }
+        };
+    });
+</script>
+<script>
+    $("#AcceptDetailBtn").click(function() {
+      var btnplusminus=$(this).val();
+        if( btnplusminus=="-" ){
+          $(this).val("+");
+          $("#AcceptDetail").slideUp( "slow" );
+        } else {
+          if( btnplusminus=="+" ){
+            $(this).val("-");
+            $("#AcceptDetail").slideDown( "slow" );
+          }
+        };
+    });
+</script>
+<script>
+    $("#AcceptRouteBtn").click(function() {
+      var btnplusminus=$(this).val();
+        if( btnplusminus=="-" ){
+          $(this).val("+");
+          $("#AcceptRoute").slideUp( "slow" );
+        } else {
+          if( btnplusminus=="+" ){
+            $(this).val("-");
+            $("#AcceptRoute").slideDown( "slow" );
+          }
+        };
+    });
+</script>
+</body>
+</html>

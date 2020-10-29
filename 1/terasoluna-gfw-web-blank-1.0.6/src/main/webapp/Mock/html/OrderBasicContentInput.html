@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>次期発注管理システム（仮称）</title>
+<meta name="description" content="稟議・申請ワークフロー">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"  href="../css/include/jquery-ui-1.12.1.css">
+<link rel="stylesheet"  href="../css/common/main.css">
+<link rel="stylesheet"  href="../css/common/popup.css">
+
+</head>
+
+<body>
+<div class="wrapper">
+<!----- ヘッダー START----->
+<header class="lnk_menu" ><img src="../image/logo_s.png" class="img_logo">次期発注管理システム（仮称）</header>
+<!----- ヘッダー END ----->
+
+<!----- パンくず ----->
+<div id="features">
+  <div class="feature-row">
+    <div class="feature-col">
+      <img src="../image/image001.png" width=80px>
+      <h4>ガバナンス確認</h4>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image016.png" width=20px>
+    </div>
+    <div class="feature-col">
+      <img src="../image/selected002.png" width=80px>
+      <h4>基本内容入力</h4>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image016.png" width=20px>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image003.png" width=80px>
+      <h4>明細内容入力</h4>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image016.png" width=20px>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image004.png" width=80px>
+      <h4>稟議内容入力</h4>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image016.png" width=20px>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image005.png" width=80px>
+      <h4>承認ルート入力</h4>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image016.png" width=20px>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image006.png">
+      <h4>内容確認</h4>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image016.png" width=20px>
+    </div>
+    <div class="feature-col">
+      <img src="../image/image007.png">
+      <h4>登録完了</h4>
+    </div>
+  </div>
+</div>
+<!----- パンくず END ----->
+
+<!----- メインコンテンツ START ----->
+<article id="main_win_area" style="height: auto;">
+    
+    <h1 class="hks_title" >発注基本内容入力</h1>
+
+
+<div style="margin:10px auto 10px;width:50%;">
+    <button id="motoroBtn" class="push_btn btn_m"  onClick="gotoPage('OrderPremiseInput.html')">戻る</button>&nbsp;
+    <button id="saveAllChanges" class="push_btn btn_m">一時保存</button>&nbsp;
+    <button class="push_btn btn_m" onClick="gotoPage('OrderDetailInput.html')">次へ</button>&nbsp;
+    <button id="hatchuNaiyouKakuninnHeBtn" class="push_btn btn_m" style="width:150px;" onClick="gotoPage('OrderContentConfirm.html')">発注内容確認へ</button>
+</div>
+
+<label id="checkLabel" style="color: red;margin:10px auto 10px;width:50%;margin-bottom: 10px;display: none;">
+    <stong>ｘｘｘの場合は、ｘｘｘを入力してください。</stong>
+</label>
+
+<table class="tbl_table">
+    <tr>
+      <td class="leftTD1" colspan="5">
+        発注番号
+         <img style="padding-left: 5px;vertical-align: middle;height: 27px;" src="../image/png1.png" />
+      </td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注番号＞</p></div></td>
+      <td class="rightTD">
+        <input id="hatchuBanngo" type="text"  class="input_basicTXT">
+      </td>
+    </tr>
+    <tr>
+      <td class="leftTD1" colspan="4">年度</td>
+      <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜年度＞</p></div></td>
+      <td class="rightTD">
+        <select class="cb_placeholder col_width10" style="width: 99%;height: 28px;">
+            <option value="2020">2020</option>
+            <option value="2020">2021</option>
+            <option value="2020">2022</option>
+          </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="leftTD1" colspan="4">起案日</td>
+      <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜起案日＞</p></div></td>
+      <td class="rightTD">
+        <input id="calendar1" class="date-inp ctl_calendar" type="text" readonly="readonly"
+          style="width: 30%;float: left;border-width:0.5px;"/>
+        <img class="date-img1" src="../image/png4.png" style="height: 20px;float: left;margin: 5px;"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="leftTD1" colspan="5">起案者</td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜起案者＞</p></div></td>
+      <td class="rightTD">
+        <input type="text" class="input_basicTXT">
+      </td>
+    </tr>
+    <tr>
+      <td class="leftTD1" colspan="4">起案部署</td>
+      <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜起案部署＞</p></div></td>
+      <td class="rightTD" >
+        <input type="text" class="input_basicTXT">
+      </td>
+    </tr>
+    <tr>
+      <td class="leftTD1" colspan="4">件名</td>
+      <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜件名＞</p></div></td>
+      <td class="rightTD" style="font-size: 15px;">
+        <input id="jianMing" class="textarea-group2 textarea-group2-1" type="text" placeholder="例）０００の件" 
+        onblur="tip1Change(this.value)" onkeyup="document.getElementId('laveCount1').innerHTML = 100-this.value.length"
+        style="height: 25px;width: 75%;border-radius:6px;border-width:0.5px;">
+        残<label id="laveCount2-1">100</label>文字<br/>
+        <label id="tip1" style="color:red;display: none;">件名を入力してください。</label>
+      </td>
+    </tr>
+    <tr>
+      <td class="leftTD1" colspan="4">発注タイプ</td>
+      <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注タイプ＞</p></div></td>
+      <td class="rightTD">
+        <!--TODO: onclick 's jquery method-->
+        <input class="radioType1NormalBuy" name="発注タイプ" type="radio" value="開発委托・宣传・一般購買" />&nbsp;開発委托・宣传・一般購買
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input class="radioType2MonthlyFixed" name="発注タイプ" type="radio" value="月額固定费" />&nbsp;月額固定费
+      </td>
+    </tr>
+    <tr>
+      <td class="leftTD1" colspan="4">
+        発注担当者
+         <img style="padding-left: 5px;vertical-align: middle;height: 27px;" src="../image/png1.png" />
+      </td>
+      <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注担当者＞</p></div></td>
+      <td id="inputListSearch_hatchuTanntosya" class="rightTD">
+        <!--TODO: 模糊查询 need to connect the background server...-->
+        <input id="inputOfList1" class="cb_placeholder col_width10" style="width: 99%;height: 28px;" list="list1" placeholder="承認　太郎（チーフ）">
+        <datalist id="list1">
+            <option>承認　太郎（チーフ）００部△△課</option>
+            <option>承認　一郎（フシスタントマネージャー）００部△△課</option>
+            <option>承認　二郎（マネージャー）００部△△課</option>
+        </datalist>
+      </td>
+    </tr>
+    <tr >
+      <td class="leftTD1" colspan="4">
+        発注担当部署
+         <img style="padding-left: 5px;vertical-align: middle;height: 27px;" src="../image/png1.png" />
+      </td>
+      <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注担当部署＞</p></div></td>
+      <td class="rightTD">
+        <input id="hatchuTanntoBuShu" type="text" placeholder="名前の一部を入力すると候补を表示します。" class="input_basicTXT">
+      </td>
+    </tr>
+    <!--todo:  -->
+    <tr>
+      <td class="leftTD1" rowspan="3" style="vertical-align: bottom;border-bottom: 0px;width: 5%;">仕入先</td>
+      <td class="leftTD2" rowspan="3" style="vertical-align: bottom;border-bottom: 0px;width: 4.5%;"><label style="color:red;float: right;">*</label></td>
+      <td class="leftTD3" rowspan="3" style="vertical-align: bottom;border-bottom: 0px;width: 4%;"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注担当部署＞</p></div></td>
+      <td class="leftTD1" colspan="2">
+        仕入先名
+        <img style="padding-left: 5px;vertical-align: middle;height: 27px;" src="../image/png1.png" />
+      </td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜仕入先名＞</p></div></td>
+      <td class="rightTD" style="font-size:15px;">
+        <!--TODO: onkeyuop="textarea1Change(this)"-->
+        <input type="text" class="input_basicTXT_1" style="height: 25px;border: 1px solid #999999;">
+          </td>
+    </tr>
+    <tr>
+      <td class="leftTD1" colspan="2">
+        支払条件
+        <img style="padding-left: 5px;vertical-align: middle;height: 27px;" src="../image/png1.png" />
+      </td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜支払条件＞</p></div></td>
+      <td class="rightTD" style="font-size:15px;">
+        <!--TODO: onkeyuop="textarea1Change(this)"-->
+        <input type="text" class="input_basicTXT">
+      </td>
+    </tr>
+    <tr>
+      <td class="leftTD1" colspan="2">銀行</td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜銀行＞</p></div></td>
+      <td class="rightTD" style="font-size:15px;">
+          <!--TODO: onkeyuop="textarea1Change(this)"-->
+          <input type="text"  class="input_basicTXT">
+      </td>
+    </tr>
+    <tr>
+      <td class="leftTD1" colspan="3" rowspan="2" style="vertical-align: top;border-top: 0px;border-right:1px solid #999999;">
+        <p id="supplierSch01" class="btn_opn_pop" >仕入先検索</p><!-- onClick="gotoPage('SupplierSearch.html')" -->
+      </td>
+      <td class="leftTD1" colspan="2">銀行口座</td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜銀行口座＞</p></div></td>
+      <td class="rightTD" style="font-size:15px;">
+          <!--TODO: onkeyuop="textarea1Change(this)"-->
+          <input type="text"  class="input_basicTXT">
+      </td>
+    </tr>
+    <tr>
+      <td class="leftTD1" colspan="2">
+        手数料負担
+        <img style="padding-left: 5px;vertical-align: middle;height: 27px;" src="../image/png1.png" />
+      </td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜手数料負担＞</p></div></td>
+      <td class="rightTD" style="font-size:15px;">
+          <!--TODO: onkeyuop="textarea1Change(this)"-->
+          <input type="text" style="height: 30px;" class="input_basicTXT">
+      </td>
+    </tr>
+      <tr>
+        <td class="leftTD1" colspan="2" rowspan="2">通貨・税関連</td>
+        <td class="leftTD3" rowspan="2"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜通貨・税関連＞</p></div></td>
+        <td class="leftTD1" colspan="3" style="border-right:1px solid #999999;">通貨</td>
+        <td class="rightTD" style="font-size:15px;">
+          <!--TODO: onkeyuop="textarea1Change(this)"-->
+          <input type="text"  class="input_basicTXT">
+            </td>
+      </tr>
+      <tr>
+        <td class="leftTD1" colspan="3" style="border-right:1px solid #999999;">源泉税</td>
+        <td class="rightTD" style="font-size:15px;">
+          <!--TODO: onkeyuop="textarea1Change(this)"-->
+          <input type="radio" name="源泉税" value="源泉税なし" />&nbsp;源泉税あり
+        </td>
+      </tr>
+    <tr>
+      <td class="leftTD1" colspan="2">取引先担当者</td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜取引先担当者＞</p></div></td>
+      <td class="leftTD1" colspan="3" style="border-right:1px solid #999999;">部署名 担当者</td>
+      <td class="rightTD" style="font-size:15px;">
+        <!--TODO: onkeyuop="textarea1Change(this)"-->
+        <input id="textarea1-1" class="textarea-group1 textarea-group1-1" maxlength="50" type="text" placeholder="例）株式会社００ ００００様" style="height: 25px;width:75%;border: 1px solid #555555;">
+        残<label id="laveCount1-1">50</label>文字<br/>
+      </td>
+    </tr>
+    <tr>
+      <td class="leftTD1" colspan="4">発注パターン</td>
+      <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注パターン＞</p></div></td>
+      <td class="rightTD">
+       <div style="position:relative;">
+        <select id="selectHatchubatan" class="col_width10" style="width: 99%;height: 28px;">
+          <option value="" class="op_hide">選択してください</option>
+          <option value="hatchuButton1">（基本契约あり）BNE標準フォーマットで発注書を作成契约するー＞基本契约ありの場合の契约文言差し込む。</option>
+          <option value="hatchuButton2">（基本契约なし）BNE標準フォーマットで発注書を作成契约するー＞基本契约なしの場合の契约文言差し込む。</option>
+          <option value="hatchuButton3">BNE標準以外（先方フォーマット）で契约するー＞発注書を添付する</option>
+          <option value="hatchuButton4">海外と契约するー＞発注書を添付する</option>
+        </select>
+       </div>
+     </td>
+   </tr>
+  <tr>
+    <td class="leftTD1" colspan="4">
+      注文日
+      <img style="padding-left: 5px;vertical-align: middle;height: 27px;" src="../image/png1.png" />
+    </td>
+    <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+    <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜注文日＞</p></div></td>
+    <td class="rightTD">
+      <input id="calendar2" class="date-inp ctl_calendar" type="text" readonly="readonly"
+        style="width: 30%;float: left;border-width:0.5px;"/>
+      <img class="date-img2" src="../image/png4.png" style="height: 20px;float: left;margin: 5px;"/>
+    </td>
+  </tr>
+  <tr id="yayinRequest" style="display:none;">
+    <td class="leftTD1" colspan="4">押印請求</td>
+    <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+    <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜押印請求＞</p></div></td>
+    <td class="rightTD">
+      <input class="radioRequestNone" name="押印請求" type="radio" value="押印請求なし" />&nbsp;押印請求なし
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input class="radioRequestHave" name="押印請求" type="radio" value="押印請求あり" />&nbsp;押印請求あり
+    </td>
+  </tr>
+  <tr>
+    <td class="leftTD1" colspan="4">印纸贴付</td>
+    <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+    <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜印纸贴付＞</p></div></td>
+    <td class="rightTD">
+      <input id="radioPaperNone" name="印纸" type="radio" value="印纸なし" />&nbsp;印纸なし
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input id="radioPaperSelected" class="radioPaperHave" name="印纸" type="radio" value="印纸あり" />&nbsp;印纸あり
+    </td>
+  </tr>
+  <tr id="yinzhiPaperMoney" style="display:none;">
+    <td class="leftTD1" colspan="4">印纸额</td>
+    <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+    <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜印纸额＞</p></div></td>
+    <td class="rightTD">
+      <input id="MoneyRestrict" maxLength='4' type="text" placeholder="例）999,999" class="input_basicTXT">
+    </td>
+  </tr>
+  <tr id="PaperTannto" style="display:none;">
+    <td class="leftTD1" colspan="4">印纸费用担当部署</td>
+    <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+    <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜印纸费用担当部署＞</p></div></td>
+    <td class="rightTD">
+      <input type="text" placeholder="情報システム部事業支援..." class="input_basicTXT">
+    </td>
+  </tr>
+    <tr id="hatchuSyouFileUpload" style="display: none;">
+      <td class="leftTD1" colspan="4">発注書</td>
+      <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注書＞</p></div></td>
+      <td class="rightTD">
+         <div id="fileTextField" ondragover="event.preventDefault();" >
+          ここにドロップ&ドラッグしてください。<br/>
+          または 
+          
+          <!--TODO:-->
+            <label id="fileSelect" style="color:#2BCAFA;" onclick="">ファイルを選択...</label><br/>
+            <label style="color:red">ファイルを設定後に、別ウィンドウ/別タブでシステムを開くと、ファイル・データがはそうする場合があります。</label>
+        </div> 
+        <input id="fileField" type="file" name="fileField" size="28" onchange="fileFieldOnChange(this.value)" style="display: none;width: 70%;"/>
+          <div id="fileNamefield" style="display: none;font-size: 15px;">
+            <input id="fileNameInput" type="text" style="width:250px;background: #F2F2F2;border-width: 0.5px;">
+            <button id="delectFileBtn" value="''">削除</button>
+            <input type="text" id="textarea2-2"
+            class="textarea-group2 textarea-group2-2"
+            
+            style="height: 25px;width: 510px;border-radius:6px;border-width:0.5px;">
+            残<label id="laveCount2-2">100</label>文字<br/>
+          </div> 
+      </td>
+    </tr>
+    <tr id="hatchuSyouSakuseiContent" style="display: none;">
+      <td class="leftTD1" colspan="2" rowspan="7" style="border-right:1px solid #999999;">発注書</td>
+      <td class="leftTD1" colspan="3">
+        契約文言
+        <img style="padding-left: 5px;vertical-align: middle;height: 27px;" src="../image/png1.png" />
+      </td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜契約文言＞</p></div></td>
+      <td class="rightTD" style="font-size:15px;">
+        <!--TODO: onkeyuop="textarea1Change(this)"-->
+            <textarea id="textarea4-1" class="textarea-group4 textarea-group4-1" maxlength="250" style="height: 70px;width:85%;border-radius: 10px;"></textarea>
+            残<label id="laveCount4-1">250</label>文字
+          </td>
+    </tr>
+    <tr id="siharaiJyoukennMonnGonn" style="display: none;">
+      <td class="leftTD1" colspan="3">
+        支払条件文言
+        <img style="padding-left: 5px;vertical-align: middle;height: 27px;" src="../image/png1.png" />
+      </td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜支払条件文言＞</p></div></td>
+      <td class="rightTD" style="font-size:15px;">
+        <!--TODO: onkeyuop="textarea1Change(this)"-->
+            <textarea id="textarea4-2" class="textarea-group4 textarea-group4-2" maxlength="250" style="height: 70px;width:85%;border-radius: 10px;"></textarea>
+            残<label id="laveCount4-2">250</label>文字
+          </td>
+    </tr>
+    <tr id="nanoBasyou" style="display: none;">
+      <td class="leftTD1" colspan="2">
+        納入場所
+        <img style="padding-left: 5px;vertical-align: middle;height: 27px;" src="../image/png1.png" />
+      </td>
+      <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜納入場所＞</p></div></td>
+      <td class="rightTD">
+        <input id="futureKennsyuTokoro" class="radioPaperNone" name="納入場所" type="radio" value="納入場所1" />&nbsp;バンダイナムコ未来研究所
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input  id="radioBtnOther" class="radioPaperHave" name="納入場所" type="radio" value="納入場所2" />&nbsp;その他
+      </td>
+    </tr>
+    <tr id="radioOtherBtn_Name" style="display: none;"> 
+      <td class="leftTD1" colspan="2">名称</td>
+      <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜名称＞</p></div></td>
+      <td class="rightTD" style="font-size:15px;">
+        <!--TODO: onkeyuop="textarea1Change(this)"-->
+            <textarea id="radioOtherBtn_Name_textarea" class="radioOtherBtn_Name_textarea" maxlength="40" style="height: 30px;width:85%;border-radius: 10px;"></textarea>
+            残<label id="laveCount_radioOtherBtn_Name">40</label>文字
+          </td>
+    </tr>
+    <tr id="radioOtherBtn_Homeplace" style="display: none;">
+      <td class="leftTD1" colspan="2">住所</td>
+      <td class="leftTD2"><label style="color:red;float: right;">*</label></td>
+      <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜住所＞</p></div></td>
+      <td class="rightTD" style="font-size:15px;">
+        <!--TODO: onkeyuop="textarea1Change(this)"-->
+            <textarea id="radioOtherBtn_Homeplace_textarea" class="textarea-group-homeplace radioOtherBtn_Homeplace_textarea" maxlength="160" style="height: 70px;width:85%;border-radius: 10px;"></textarea>
+            残<label id="laveCount_radioOtherBtn_Homeplace">160</label>文字
+          </td>
+    </tr>
+    <tr id="hatchuWowaseSaki" style="display: none;">
+    <td id="hatchuWowaseDestination" class="leftTD1" colspan="3">
+      発注問い合わせ先
+      <img style="padding-left: 5px;vertical-align: middle;height: 27px;" src="../image/png1.png" />
+    </td>
+    <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注問い合わせ先＞</p></div></td>
+    <td class="rightTD" style="font-size:15px;">
+      <!--TODO: onkeyuop="textarea1Change(this)"-->
+          <textarea id="textarea2-3" class="textarea-group2 textarea-group2-3" maxlength="100" style="height: 70px;width:85%;border-radius: 10px;"></textarea>
+          残<label id="laveCount2-3">100</label>文字
+        </td>
+  </tr>
+  <tr id="biKou" style="display: none;">
+    <td class="leftTD1" colspan="3">
+      備考
+      <img style="padding-left: 5px;vertical-align: middle;height: 27px;" src="../image/png1.png" />
+    </td>
+    <td class="leftTD3"><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜備考＞</p></div></td>
+  <td class="rightTD" style="font-size:15px;">
+    <!--TODO: onkeyuop="textarea1Change(this)"-->
+        <textarea id="textarea3-1" class="textarea-group3 textarea-group3-1" maxlength="200" style="height: 70px;width:85%;border-radius: 10px;"></textarea>
+        残<label id="laveCount3-1">200</label>文字
+      </td>
+</tr>
+ 
+  </table>
+    <div style="margin:10px auto 10px;width:50%;">
+      <button id="motoroBtn" class="push_btn btn_m"  onClick="gotoPage('OrderPremiseInput.html')">戻る</button>&nbsp;
+      <button id="saveAllChanges" class="push_btn btn_m">一時保存</button>&nbsp;
+      <button class="push_btn btn_m" onClick="gotoPage('OrderDetailInput.html')">次へ</button>&nbsp;
+    <button id="hatchuNaiyouKakuninnHeBtn" class="push_btn btn_m" style="width:150px;" onClick="gotoPage('OrderContentConfirm.html')">発注内容確認へ</button>
+  </div>
+  <iframe src="" frameborder="0" scrolling="0" id="iframe" style="display: none;"></iframe>
+</article>
+<!----- メインコンテンツ END ----->
+
+<!----- フッター ----->
+<article style="position: fixed;bottom: 0;width: 100%;">
+  <!-- 先頭へスクロール -->
+　<section>
+  <div id="toTopImg" class="area_foottool" >
+    <p class="btn_goto_top">↑</p>
+  </div>
+　</section>
+  <!-- Copyright表記 -->
+  <section>
+    <footer>Copyright xxxxxxxxxxxxxxxxxxxxxxxxxxx</footer>
+  </section>
+</article>
+<!----- フッター END ----->
+
+</div>
+
+<script src="../js/include/jquery-1.12.4.js" ></script>
+<script src="https://code.jquery.com/jquery-1.7.2.min.js" integrity="sha256-R7aNzoy2gFrVs+pNJ6+SokH04ppcEqJ0yFLkNGoFALQ=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.8.21/jquery-ui.min.js" integrity="sha256-DKEv4IPW6aw0MrDgVoDVyPv6DQgU+GG8+Q3uW5utOFM=" crossorigin="anonymous"></script>
+<script src="../js/include/jquery.ui.datepicker-ja.js"></script>
+<script src="../data/UserNameData.js"></script>
+<script src="../js/common/common.js"></script>
+<script src="../js/common/popup.js"></script>
+
+<script src="../js/page/OrderBasicContentInput.js"></script>
+<script src="../js/common/dragAndDrop.js"></script>
+</body>
+</html>

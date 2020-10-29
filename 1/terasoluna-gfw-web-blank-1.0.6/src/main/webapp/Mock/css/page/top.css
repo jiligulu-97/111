@@ -1,0 +1,109 @@
+/*== トップ START ==*/
+
+table tbody{
+    display: block;
+    height: 100px;
+    overflow-y: scroll;
+}
+table thead{
+    width: calc(100% - 1em);
+}
+
+#top_table_notify {
+    width:95%;
+    height:auto;
+    margin: 0px auto;
+    border-spacing: 0;
+    cursor: default;
+    table-layout: fixed;
+    overflow-y: scroll;
+  }
+  
+  #top_table_notify thead tr:nth-child(odd) {
+    height: 48px;
+    background: #dddddd;
+  }
+  
+  #top_table_notify thead tr:nth-child(:even) {
+    height: 48px;
+    background: #999999;
+  }
+  #top_table_notify thead th {
+    font-weight: normal;
+    border-top: 1px solid #000000;
+    /* border-bottom: 1px solid #000000; */
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+  
+    font-size:0.875em;
+  }
+ 
+  
+  #top_table_notify thead th.orderasc::after  {
+    content: '▲';
+  }
+  
+  #top_table_notify thead th.orderdesc::after  {
+    content: '▼';
+  }
+  
+  #top_table_notify thead th:first-of-type {
+    border-left: 1px solid #000000;
+  }
+  
+  #top_table_notify thead th:last-of-type {
+    border-right: 1px solid #000000;
+    /* border-bottom: 1px solid #000000; */
+  }
+  
+  #top_table_notify tbody tr {
+    height: 1.5625em;
+  }
+  
+  #top_table_notify tbody tr:hover {
+    background: #ddddff;
+  }
+  
+  #top_table_notify tbody td {
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    font-size:0.75em;
+  }
+  
+  #top_table_notify tbody td div {
+    white-space: pre;
+    overflow: visible;
+    text-overflow: ellipsis;
+  }
+  
+  #top_table_notify tbody td:first-of-type {
+    border-left: 1px solid #000000;
+  }
+  
+  #top_table_notify tbody td:last-of-type {
+    border-right: 1px solid #000000;
+  }
+  
+  #top_table_notify tbody td.tx_center {
+    text-align: center;
+  }
+  
+  #top_table_notify tfoot tr {
+    height: 28px;
+    background: #eeeeee;
+  }
+  
+  
+  #top_table_notify tfoot td {
+    border-bottom: 1px solid #000000;
+  }
+  
+  #top_table_notify tfoot td:first-of-type {
+    border-left: 1px solid #000000;
+  }
+  
+  #top_table_notify tfoot td:last-of-type {
+    border-right: 1px solid #000000;
+  }
+  /*== トップ END ==*/
+  

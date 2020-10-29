@@ -1,0 +1,25 @@
+
+/*== パンくず ==*/
+#features{
+	padding-top: 10px;
+	padding-bottom: 50px;
+}
+.feature-row{
+	width: 50%;
+	margin: auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+.feature-col{
+	flex-basis: 4%;
+	text-align: center;
+}
+
+.feature-col h4{
+	margin-bottom: -40px;
+	font-size: 0.700em;
+	font-weight: 200;
+}
+

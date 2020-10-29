@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>次期発注管理システム（仮称）</title>
+<meta name="description" content="稟議・申請ワークフロー">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="../css/common/main.css">
+<link rel="stylesheet" type="text/css" href="../css/common/lableTable.css">
+<link rel="stylesheet" type="text/css" href="../css/common/RouteInput.css">
+<link rel="stylesheet" type="text/css" href="../css/page/AcceptanceDetailInput.css">
+</head>
+<body>
+<div class="wrapper">
+
+<!----- (PC)発注前提入力画面 ----->
+
+<!----- ヘッダー ----->
+<header id = "lnk_menuclk" class="lnk_menu2" ><img src="../image/logo_s.png" class="img_logo">次期発注管理システム（仮称）</header>
+<!----- メインコンテンツ ----->
+<article id="main_win_area" style="height: auto;">
+    <h1 class="hks_title" >検査結果通知書プレビュー</h1>
+    <div style="margin:10px auto 10px;width:50%;">
+      <p>
+        <div style="text-align: center;">
+          <input type="button" class="push_btn btn_m" value="閉じる" onClick="javascript:history.back(-1);" >
+        </div>
+      </p>
+    </div>
+    
+    <div style="text-align: center; margin:10px auto 10px;width:45%;">
+      <img src="../image/Inspection_result_notification_preview.png" width=700px>
+    </div>
+    <div style="margin:10px auto 10px;width:50%;">
+      <p>
+        <div style="text-align: center;">
+          <input type="button" class="push_btn btn_m" value="閉じる" onClick="javascript:history.back(-1);" >
+        </div>
+      </p>
+    </div>
+</article>
+<!----- メインコンテンツ END ----->
+
+<!----- ダイアログエリア START ----->
+<div id="dialog_div_keiyakushoSch01" style="display:none;">
+  <input type="text" placeholder="例）BNE-xxxxxxxxxx" maxlength='32'>
+</div>
+<div id="dialog_div_ringiSch01" style="display:none;">
+  <input type="text" placeholder="例）BNE-RG99999999" maxlength='32'>
+</div>
+<div id="dialog_div_houmuSch01" style="display:none;">
+  <input type="text" placeholder="例）ZACRO-99999999" maxlength='32'>
+</div>
+<!----- ダイアログエリア END ----->
+
+<!----- フッター ----->
+<article style="position: fixed;bottom: 0;width: 100%;">
+  <!-- 先頭へスクロール -->
+　<section>
+  <div id="toTopImg" class="area_foottool" >
+    <p class="btn_goto_top">↑</p>
+  </div>
+　</section>
+  <!-- Copyright表記 -->
+  <section>
+    <footer>Copyright xxxxxxxxxxxxxxxxxxxxxxxxxxx</footer>
+  </section>
+</article>
+<!----- フッター END ----->
+
+</div>
+<!-- <script src="https://code.jquery.com/jquery-1.7.2.min.js" integrity="sha256-R7aNzoy2gFrVs+pNJ6+SokH04ppcEqJ0yFLkNGoFALQ=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.8.21/jquery-ui.min.js" integrity="sha256-DKEv4IPW6aw0MrDgVoDVyPv6DQgU+GG8+Q3uW5utOFM=" crossorigin="anonymous"></script> -->
+<script src="../js/jquery.js"></script>
+<script src="../js/jquery-3.5.1.min.js"></script>
+<script src="../js/jquery-ui-1.12.1.min.js"></script>
+<script src="../js/jquery.ui.datepicker-ja.js"></script>
+<script src="../data/UserNameData.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/OrderListBasicContentsInput.js"></script>
+<script src="../data/MyOrderListData.js"></script>
+<script>
+  function closeWin() {
+   try {
+       window.opener = window;
+       var win = window.open("","_self");
+       win.close();
+       //frame的时候
+       top.close();
+   } catch (e) {
+ 
+   }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+ /* 公共弹出层 */
+ .popWrap{position: fixed;left: 0;top: 0; width: 100%;height: 100%;z-index: 1000000;}
+ .popMask{width:100%;height:100%;background-color:#ddd;filter:Alpha(opacity=50);-moz-opacity:0.5;opacity:0.5; }
+ .popMask iframe,.popMain .popCont iframe{ width: 100%;height: calc(100% - 28px);border: 0 none; }
+ .popMain{ position: absolute;left: 50%;top: 50%;background-color: #fff;z-index: 1000001; border: 1px solid #e9e9e9;}
+ .popMain .popTit { background-color: #e9e9e9;color: #fff;font-size: 12px;height: 28px;line-height: 28px;padding-left: 12px;padding-right: 12px;}
+ .popMain .popTit .close{ font-family: iconfont; font-size: 12px;cursor: pointer;color: #fff; }
+ .popMain .popTit .close:hover{ color: #fff; }
+ .popMain .popCont {width: 100%;height: 100%;}
+ .popMain .popCont .popLoading { margin: 10px ;}
+ .popTit {
+    color: #333333;
+    font-weight: bold;
+    font-family: Arial,Helvetica,sans-serif;
+ }

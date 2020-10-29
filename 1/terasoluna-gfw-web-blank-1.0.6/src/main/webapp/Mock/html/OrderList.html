@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>次期発注管理システム（仮称）</title>
+<meta name="description" content="稟議・申請ワークフロー">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"  href="../css/include/jquery-ui-1.12.1.css">
+<link rel="stylesheet"  href="../css/common/main.css">
+
+</head>
+<body>
+<div class="wrapper">
+<!----- ヘッダー START----->
+<header class="lnk_menu" ><img src="../image/logo_s.png" class="img_logo">次期発注管理システム（仮称）</header>
+<!----- ヘッダー END ----->
+
+<!----- メインコンテンツ START ----->
+<article id="main_win_area">
+  <h1 class="hks_title" >発注一覧</h1>
+  <!----- 条件欄 START ----->
+  <section style="width: 50%;
+  margin: 15px auto 10px;">
+    <table id="tb_order_cond_list1" class="tbl_2lane tbl_small" style="width: 100%;" >
+      <tr>
+        <td>発注タイプ</td>
+        <td></td>
+        <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注タイプ＞</p></div></td>
+        <td>
+          <select class="cb_placeholder col_width10" style="height: 28px;">
+            <option value="" class="op_hide">選択してください</option>
+            <option value="-" class="op_normal"></option>
+            <option value="01" class="op_normal">開発委託・宣伝</option>
+            <option value="02" class="op_normal">一般購買</option>
+            <option value="03" class="op_normal">月額固定費</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>発注番号</td>
+        <td></td>
+        <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注番号＞</p></div></td>
+        <td><input type="text" class="col_width07" placeholder="例)9999999999" value="" maxlength="10"></td>
+      </tr>
+      <tr>
+        <td>発注担当者</td>
+        <td></td>
+        <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注担当者＞</p></div></td>
+        <td><input type="text" class="txt_userlist col_width20" placeholder="名前の一部を入力すると候補を表示します" value=""></td>
+      </tr>
+      <tr>
+        <td>仕入先</td><!--TODO:click and then whether to open the popup or not -->
+        <td><p id="supplierSch01" class="btn_opn_pop" >仕入先検索</p></td>
+        <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜仕入先＞</p></div></td>
+        <td><input type="text" id="supplier_name" class="col_width20" value=""></td>
+      </tr>
+      <tr>
+        <td>フリーワード</td>
+        <td></td>
+        <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜フリーワード＞</p></div></td>
+        <td><textarea class="txt_auto_size col_width22" cols="22" rows="1"></textarea></td>
+      </tr>
+      <tr>
+        <td>伝票状況</td>
+        <td></td>
+        <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜伝票状況＞</p></div></td>
+        <td>
+          <select class="cb_placeholder col_width10" style="height: 28px;">
+            <option value="" class="op_hide">選択してください</option>
+            <option value="-" class="op_normal"></option>
+            <option value="01" class="op_normal">一時保存</option>
+            <option value="02" class="op_normal">承認・決済待ち</option>
+            <option value="03" class="op_normal">決裁済</option>
+            <option value="04" class="op_normal">否決</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>受入状況</td>
+        <td></td>
+        <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜受入状況＞</p></div></td>
+        <td>
+          <select class="cb_placeholder col_width10" style="height: 28px;">
+            <option value="" class="op_hide">選択してください</option>
+            <option value="-" class="op_normal"></option>
+            <option value="01" class="op_normal">未受入明細あり</option>
+            <option value="02" class="op_normal">全明細受入済</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4" class="rec_coalescing"  >
+          <label id="btn_accordion01" class="btn_plus">詳細条件</label>
+        </td>
+      </tr>
+    </table>
+    <div id="win_accordion01">
+      <table id="tb_order_cond_list2" class="tbl_2lane tbl_small" style="width: 100%;">
+        <tr>
+          <td>公開範囲</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜公開範囲＞</p></div></td>
+          <td>
+            <select class="cb_placeholder col_width10" style="height: 28px;">
+              <option value="" class="op_hide">選択してください</option>
+              <option value="-" class="op_normal"></option>
+              <option value="01" class="op_normal">全体（グループ会社含む）</option>
+              <option value="02" class="op_normal">社内</option>
+              <option value="03" class="op_normal">部内</option>
+              <option value="04" class="op_normal">課内</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>起票日</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜起票日＞</p></div></td>
+          <td>
+              <input type="text" class="ctl_calendar" readonly value="">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+              ～
+              <input type="text" class="ctl_calendar" readonly value="">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+          </td>
+        </tr>
+        <tr>
+          <td>注文日</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜注文日＞</p></div></td>
+          <td>
+              <input type="text" class="ctl_calendar" readonly value="">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+              ～
+              <input type="text" class="ctl_calendar" readonly value="">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+          </td>
+        </tr>
+        <tr>
+          <td>発注担当部署</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜発注担当部署＞</p></div></td>
+          <td><input type="text" class="txt_userlist col_width20" placeholder="名前の一部を入力すると候補を表示します" value=""></td>
+        </tr>
+        <tr>
+          <td>決裁日</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜決裁日＞</p></div></td>
+          <td>
+              <input type="text" class="ctl_calendar" readonly value="">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+              ～
+              <input type="text" class="ctl_calendar" readonly value="">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar3 ctl_calendarbtn" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                <path fill-rule="evenodd" d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+          </td>
+        </tr>
+        <tr>
+          <td>決裁者</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜決裁者＞</p></div></td>
+          <td><input type="text" class="txt_userlist col_width20" placeholder="名前の一部を入力すると候補を表示します"></td>
+        </tr>
+        <tr>
+          <td>基本契約</td>
+          <td></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜基本契約＞</p></div></td>
+          <td>
+            <select class="cb_placeholder col_width10" style="height: 28px;">
+              <option value="" class="op_hide">選択してください</option>
+              <option value="-" class="op_normal"></option>
+              <option value="01" class="op_normal">あり</option>
+              <option value="02" class="op_normal">なし</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>予算稟議番号</td>
+          <td><p id="approvalSch01" class="btn_opn_pop">稟議検索</p></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜予算稟議番号＞</p></div></td>
+          <td><input type="text" id="approval_name" class="col_width11" value="" placeholder="例）BNE-RG99999999" maxlength="14"></td>
+        </tr>
+        <tr>
+          <td>WBS</td>
+          <td><p id="WBSBtn" class="btn_opn_pop" >WBS検索</p></td>
+          <td><div class="btn_help_div"><p>？</p><p>ガイドメッセージ＜WBS＞</p></div></td>
+          <td>
+            <input type="text" id="approval_name0" class="col_width11" value="" placeholder="コードの一部を入力すると候補を表示します。" style="width: 45%;">
+            <input type="text" id="approval_name1" class="col_width11" value="" placeholder="名称の一部を入力すると候補を表示します。" style="width: 45%;">
+          </td>
+        </tr>
+     </table>
+    </div>
+    <div class="area_center search_btn_area" style="position: relative;">
+      <input type="button" id="btn_list_sch" class="push_btn btn_m" value="検索" >
+      <input type="button" id="btn_p_clear"  class="push_btn btn_m" value="クリア" >
+      <input type="button"  id="CSVSyutSyo" class="push_btn btn_m" style="position: absolute;
+      right: 0px;" value="CSV出力" >
+    </div>
+  </section>
+  <!----- 条件欄 END ----->
+  
+  <!----- 一覧 START ----->
+  <section>
+    <div class="order_list_tool_area">
+      <div>
+        <label>表示件数</label>
+        <select>
+          <option value="15">15件</option>
+          <option value="50">50件 </option>
+          <option value="100">100件</option>
+        </select>
+      </div>
+    </div>
+    <div class="ld_framearea" >
+      <table id="tb_order_list">
+        <thead>
+          <tr>
+            <th>発注番号</th>
+            <th>伝票番号</th>
+            <th>WF更新日</th>
+            <th>発注タイプ</th>
+            <th>件名</th>
+            <th>発注担当</th>
+            <th>発注担当部署</th>
+            <th>仕入先</th>
+            <th>注文日</th>
+            <th>受入</th>
+            <th>修正</th>
+            <th>取戻</th>
+            <th>再利用</th>
+            <th>削除</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td id="tb_order_list_pager" colspan="14" >
+              <div class="pager_centerbox">
+              </div>
+              <div class="pager_info">
+              </div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+      <!-- ローディングアイコン -->
+      <div id="ldicon_order_list" class="ld_freamestyle ld_ldframes">
+        <div class="ld_ldicon"></div>
+      </div>
+    </div>
+    
+  </section>
+  <!----- 一覧 END ----->
+</article>
+<!----- メインコンテンツ END ----->
+
+<!----- ダイアログエリア START ----->
+<div id="dialog_window_div">
+</div>
+<!----- ダイアログエリア END ----->
+<!----- 吹き出しSTART ----->
+<div id="balloon_message">
+  <p></p>
+</div>
+<!----- 吹き出しEND ----->
+
+<!----- ローディングアニメSTART ----->
+<div id="shadeDiv" style="position: absolute;width: 100%;height: 200%;background-color: grey;filter: alpha(opacity=50);opacity:0.7;z-index: 1001;display: none;left: 0px;top: 29px;"></div>
+<div id="loadingIcon" style="position: absolute;left: 50%;top: 18%;width: 300px;height: 80px;margin-left: -150px;background-color: #555555;border-radius: 5px;border: 2px solid #FFF;z-index: 1002;visibility: hidden;">
+  <div id="loadingBox" style="position: absolute;left: 6px;top: 6px;transform: rotate(0deg); transform-origin: 35px 35px;transition: transform 2s;"><img id="loadingImage" src="../image/loadingIcon.png" width=70px></div>
+  <div style="position: absolute;left: 80px;top: 13px;"><p style="color:#FFF;">しばらくお待ちください</p></div>
+</div>
+<!----- ローディングアニメEND ----->
+
+<!----- フッター ----->
+<article style="position: fixed;bottom: 0;width: 100%;">
+  <!-- 先頭へスクロール -->
+　<section>
+  <div id="toTopImg" class="area_foottool" >
+    <p class="btn_goto_top">↑</p>
+  </div>
+　</section>
+  <!-- Copyright表記 -->
+  <section>
+    <footer>Copyright xxxxxxxxxxxxxxxxxxxxxxxxxxx</footer>
+  </section>
+</article>
+<!----- フッター END ----->
+</div>
+<script src="../js/include/jquery-3.5.1.min.js" ></script>
+<script src="../js/include/jquery-ui-1.12.1.min.js" ></script>
+<script src="https://code.jquery.com/jquery-1.7.2.min.js" integrity="sha256-R7aNzoy2gFrVs+pNJ6+SokH04ppcEqJ0yFLkNGoFALQ=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.8.21/jquery-ui.min.js" integrity="sha256-DKEv4IPW6aw0MrDgVoDVyPv6DQgU+GG8+Q3uW5utOFM=" crossorigin="anonymous"></script>
+<script src="../js/include/jquery.ui.datepicker-ja.js"></script>
+<script src="../data/UserNameData.js"></script>
+<script src="../js/common/common.js"></script>
+<script src="../data/OrderListData.js"></script>
+<script src="../js/page/OrderList.js"></script>
+<!-- <script src="../js/page/"></script> -->
+</script>
+</body>
+</html>
+<script>
+  //** オートコンプリート(ユーザ名) **
+$( ".txt_userlist").autocomplete( {
+  source: userNameList ,
+} );
+</script>
